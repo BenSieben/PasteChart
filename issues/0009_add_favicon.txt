@@ -7,5 +7,5 @@ Ben
 Create a favicon for the website
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []

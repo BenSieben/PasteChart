@@ -21,6 +21,7 @@ class LandingView extends View {
 <head>
     <title>PasteChart</title>
     <meta charset="utf-8" />
+    <link rel="icon" href="src/resources/favicon.ico" />
 </head>
 <body>
     <h1>PasteChart</h1>

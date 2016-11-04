@@ -7,5 +7,5 @@ Ben
 Set up base classes which are needed in the project (Model, Config, etc.)
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []

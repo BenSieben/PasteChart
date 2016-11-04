@@ -1,0 +1,12 @@
+//Issue 0005: add index
+
+//Who is assigned this task
+Ben
+
+//Description
+Add index.php to root of project folder
+(all links start from this file)
+
+//Resolved or not?
+RESOLVED: [X]
+NOT RESOLVED: []

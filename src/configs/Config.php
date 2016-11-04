@@ -13,5 +13,7 @@ namespace cs174\hw4\configs;
  */
 class Config {
 
+    //Constant for the full URL to where the index.php site is for PasteChart
+    const BASE_URL = "http://192.168.2.131/hw4/index.php";
 }
 ?>

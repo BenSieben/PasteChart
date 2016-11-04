@@ -7,5 +7,5 @@ Ben
 Set up MVA folder structure for project
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []

@@ -1,0 +1,11 @@
+//Issue 0002: Set up empty classes
+
+//Who is assigned this task
+Ben
+
+//Description
+Set up base classes which are needed in the project (Model, Config, etc.)
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]

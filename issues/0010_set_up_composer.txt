@@ -1,4 +1,4 @@
-//Issue 0009: set up composer
+//Issue 0010: set up composer
 
 //Who is assigned this task
 Ben
@@ -7,5 +7,9 @@ Ben
 Set up Composer for the website
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []
+
+Composer SHOULD be working, but it cannot be known
+for certain until much later where the simpletest/simpletest
+project is actually used

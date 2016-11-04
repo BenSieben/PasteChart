@@ -15,6 +15,8 @@ class LandingView extends View {
      * @param Array $data Array<String> array of data to show in the view
      */
     function render($data) {
+        // create a variable to hold the text area placeholder because the explanation is very long
+        $textAreaPlaceholder = 'Input chart data here!';
 ?>
 <!DOCTYPE html>
 <html>
@@ -22,10 +24,26 @@ class LandingView extends View {
     <title>PasteChart</title>
     <meta charset="utf-8" />
     <link rel="icon" href="src/resources/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="src/styles/stylesheet.css" />
 </head>
 <body>
     <h1>PasteChart</h1>
     <p>Share your data in charts!</p>
+    <form>
+        <label>Chart Title
+            <br />
+        <input type="text" name="title" />
+        </label>
+        <br />
+        <br />
+        <label>Chart Data
+            <br />
+            <textarea name="chartData" rows="25" cols="80" placeholder="<?= $textAreaPlaceholder ?>"></textarea>
+        </label>
+        <br />
+        <br />
+        <input type="submit" value="Share" />
+    </form>
 </body>
 </html>
 <?php

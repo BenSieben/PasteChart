@@ -7,5 +7,5 @@ Ben
 Set up index / Controller / Views needed for landing page
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []

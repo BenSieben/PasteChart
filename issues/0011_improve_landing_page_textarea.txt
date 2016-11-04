@@ -1,0 +1,14 @@
+//Issue 0009: set up composer
+
+//Who is assigned this task
+Ben
+
+//Description
+Upgrade landing page with better text area
+placeholder and correct the form to have
+the URL to go to for checking the form data
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

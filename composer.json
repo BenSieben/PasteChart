@@ -1,0 +1,12 @@
+{
+    "name": "cs174/hw4",
+    "description": "PasteChart website",
+    "authors": [
+        {
+            "name": "Ben Sieben"
+        }
+    ],
+    "require": {
+        "simpletest/simpletest": ">=1.1"
+    }
+}

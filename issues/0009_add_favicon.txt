@@ -1,0 +1,11 @@
+//Issue 0009: add favicon
+
+//Who is assigned this task
+Ben
+
+//Description
+Create a favicon for the website
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]

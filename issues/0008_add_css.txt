@@ -1,0 +1,11 @@
+//Issue 0008: add css
+
+//Who is assigned this task
+Ben
+
+//Description
+Create CSS to beautify the website
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]

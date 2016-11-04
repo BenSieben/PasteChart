@@ -1,0 +1,11 @@
+//Issue 0009: set up composer
+
+//Who is assigned this task
+Ben
+
+//Description
+Set up Composer for the website
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]

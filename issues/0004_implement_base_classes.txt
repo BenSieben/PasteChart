@@ -1,0 +1,11 @@
+//Issue 0004: implement base classes
+
+//Who is assigned this task
+Ben
+
+//Description
+Add actual code to base classes
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]

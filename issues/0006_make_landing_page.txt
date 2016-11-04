@@ -1,0 +1,11 @@
+//Issue 0006: make landing page
+
+//Who is assigned this task
+Ben
+
+//Description
+Set up index / Controller / Views needed for landing page
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]

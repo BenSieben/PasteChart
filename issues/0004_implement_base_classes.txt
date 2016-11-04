@@ -1,10 +1,12 @@
-//Issue 0004: implement base classes
+//Issue 0007: make create db
 
 //Who is assigned this task
 Ben
 
 //Description
-Add actual code to base classes
+Add PHP script CreateDB.php in configs folder
+that initializes the database needed for the PasteChart
+website
 
 //Resolved or not?
 RESOLVED: []

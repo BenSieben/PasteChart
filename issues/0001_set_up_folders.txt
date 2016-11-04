@@ -1,0 +1,11 @@
+//Issue 0001: Set up folders
+
+//Who is assigned this task
+Ben
+
+//Description
+Set up MVA folder structure for project
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]

@@ -28,6 +28,8 @@ class ChartView extends View {
 <body>
     <h1><?= $data['hash'] ?> <?= $data['chartType'] ?> - <a href="?c=landing">PasteChart</a></h1>
     <h2>Chart goes here</h2>
+    <p>Chart title: <?= $data['title'] ?></p>
+    <p>Chart data: <?= $data['data'] ?></p>
     <h3>Share your chart and data at the URLs below:</h3>
     <p>As a LineGraph:</p>
     <p><a href="?c=chart&a=show&arg1=LineGraph&arg2=<?= $data['hash'] ?>">

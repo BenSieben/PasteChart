@@ -28,12 +28,14 @@ class ChartModel extends Model {
         $statement->prepare("INSERT INTO Chart VALUES(?, ?, ?)");
         $statement->bind_param("sss", $md5, $title, $data);
         $statement->execute();
-        $result = $statement->get_result();
-        $statement->close();
-        $mysqli->close();
-        if(!$result) {
+        $statement->get_result();
+        if($statement->affected_rows === 0) { // check if any rows were affected to determine if insert worked or not
+            $statement->close();
+            $mysqli->close();
             return false;
         }
+        $statement->close();
+        $mysqli->close();
         return true;
     }
 
@@ -50,7 +52,7 @@ class ChartModel extends Model {
         }
         $mysqli = parent::getDatabaseConnection();
         $statement = $mysqli->stmt_init();
-        $statement->prepare("SELECT * FROM Chart WHERE md5=?");
+        $statement->prepare("SELECT * FROM Chart WHERE md5 = ?");
         $statement->bind_param("s", $md5);
         $statement->execute();
         $result = $statement->get_result();

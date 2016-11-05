@@ -1,0 +1,13 @@
+//Issue 0019: improve chart.js
+
+//Who is assigned this task
+Ben
+
+//Description
+Improve chart.js to handle k-tuple data
+and be able to draw histograms
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

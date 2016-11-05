@@ -1,4 +1,4 @@
-//Issue 0017: add dsmple data
+//Issue 0017: add sample data
 
 //Who is assigned this task
 Ben
@@ -9,6 +9,6 @@ that data is being graphed correctly
 and can be retrieved correctly
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []
 

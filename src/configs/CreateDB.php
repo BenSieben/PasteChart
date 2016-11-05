@@ -1,6 +1,9 @@
 <?php
 require_once("Config.php");
+require_once("../models/Model.php");
+require_once("../models/ChartModel.php");
 use \cs174\hw4\configs\Config as Config;
+use \cs174\hw4\models\ChartModel as ChartModel;
 
 /**
  * PHP script which utilizes the Config class
@@ -31,7 +34,22 @@ $mysqli->query("USE " . Config::DB_DATABASE);
 $mysqli->query("DROP TABLE IF EXISTS Chart");
 $mysqli->query("CREATE TABLE Chart(md5 CHAR(32), " .
     "title VARCHAR(". Config::MAX_TITLE_LENGTH ."), " .
-    "data VARCHAR(". (Config::MAX_DATA_LINES * Config::MAX_DATA_LINE_LENGTH) . "))");
+    "data VARCHAR(". (Config::MAX_DATA_LINES * Config::MAX_DATA_LINE_LENGTH) . "), " .
+    "PRIMARY KEY (md5))");
+
+// add sample data to the database
+//   note that there are some lacking entries in the $data; this is to test that we can leave slots empty
+$title = "Test Chart";
+$data = "Jan,600,5.4\nFeb,450,5.0\nMar,400,4.8\nApr,380,4.5\nMay,450,4.0\nJun,500,\nJul,400,4.6\nAug,,10.1";
+$md5 = hash("md5", $data);
+$cm = new ChartModel();
+$result = $cm->insertChartEntry($md5, $title, $data);
+if(!$result) {
+    echo("Failed to add sample tuple data to database!\n");
+}
+else {
+    echo("Successfully added sample tuple data to database!\n");
+}
 
 $mysqli->close();
 

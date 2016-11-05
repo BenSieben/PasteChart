@@ -1,0 +1,12 @@
+//Issue 0018: add chart.js
+
+//Who is assigned this task
+Ben
+
+//Description
+Add chart.js implementation from project description
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

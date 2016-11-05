@@ -1,6 +1,7 @@
 <?php
 namespace cs174\hw4\controllers;
 use \cs174\hw4\configs\Config as Config;
+use \cs174\hw4\models\ChartModel as ChartModel;
 use \cs174\hw4\views\ChartView as ChartView;
 
 /**
@@ -24,27 +25,27 @@ class ChartController extends Controller {
     public function show($chartType, $dbEntryHash, $javascript_callback = null) {
         if(strcmp($chartType, 'LineGraph') === 0) { // show LineGraph
             //TODO handle LineGraph
-            $this->setUpBasicData($chartType,$dbEntryHash);
+            $this->setUpBasicData($chartType, $dbEntryHash);
         }
         else if (strcmp($chartType, 'PointGraph') === 0) { // show PointGraph
             //TODO handle PointGraph
-            $this->setUpBasicData($chartType,$dbEntryHash);
+            $this->setUpBasicData($chartType, $dbEntryHash);
         }
         else if (strcmp($chartType, 'Histogram') === 0) { // show Histogram
             //TODO handle Histogram
-            $this->setUpBasicData($chartType,$dbEntryHash);
+            $this->setUpBasicData($chartType, $dbEntryHash);
         }
         else if (strcmp($chartType, 'xml') === 0) { // show xml
             //TODO handle xml
-            $this->setUpBasicData($chartType,$dbEntryHash);
+            $this->setUpBasicData($chartType, $dbEntryHash);
         }
         else if (strcmp($chartType, 'json') === 0) { // show json
             //TODO handle json
-            $this->setUpBasicData($chartType,$dbEntryHash);
+            $this->setUpBasicData($chartType, $dbEntryHash);
         }
         else if (strcmp($chartType, 'jsonp') === 0) { // show jsonp
             //TODO handle jsonp
-            $this->setUpBasicData($chartType,$dbEntryHash);
+            $this->setUpBasicData($chartType, $dbEntryHash);
         }
         else { // bad chartType given
             // send back to landing page when given bad chartType
@@ -63,6 +64,19 @@ class ChartController extends Controller {
         $data['baseURL'] = Config::BASE_URL;
         $data['chartType'] = $chartType;
         $data['hash'] = $dbEntryHash;
+        // now load up data from database based on hash (to get chart title and date)
+        $cm = new ChartModel();
+        $result = $cm->getChartEntry($dbEntryHash);
+        if(!$result) {
+            // TODO react to tuple get failure
+            echo("<!-- Failed to load result -->");
+        }
+        else {
+            foreach($result as $row) { // use foreach to easily get result of query (only expect a single $row)
+                $data['title'] = $row['title'];
+                $data['data'] = $row['data'];
+            }
+        }
         $view = new ChartView();
         $view->render($data);
     }

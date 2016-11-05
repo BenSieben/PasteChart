@@ -25,7 +25,7 @@ class Config {
     const DB_PORT = "3307"; // port that database is on (note how this is NOT default port 3306!)
 
     // Database relation constants
-    const MAX_TITLE_LENGTH = 40; // max number of characters for a chart title
+    const MAX_TITLE_LENGTH = 50; // max number of characters for a chart title
     const MAX_DATA_LINES = 50; // max number of lines (rows) for data
     const MAX_DATA_LINE_LENGTH = 80; // max number of characters per line of data
 }

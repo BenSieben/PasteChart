@@ -1,0 +1,12 @@
+//Issue 0020: integrate chart.js with chart view
+
+//Who is assigned this task
+Ben
+
+//Description
+Utilize chart.js in the chart view (when it is needed)
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

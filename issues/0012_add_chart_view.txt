@@ -12,6 +12,6 @@ bring user to other "views" of the same
 chart data like histogram or point graph
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []
 

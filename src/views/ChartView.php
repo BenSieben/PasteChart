@@ -24,10 +24,17 @@ class ChartView extends View {
     <meta charset="utf-8" />
     <link rel="icon" href="./src/resources/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="./src/styles/stylesheet.css" />
+    <script src="./src/resources/chart.js"></script>
 </head>
 <body>
     <h1><?= $data['hash'] ?> <?= $data['chartType'] ?> - <a href="?c=landing">PasteChart</a></h1>
-    <h2>Chart goes here</h2>
+    <div id="chart"></div>
+    <script type="text/javascript">
+        graph = new Chart('chart',
+            {'Jan':7, 'Feb':20, 'Dec':5},
+            {'title':'<?= $data['title'] ?>', 'type':'<?= $data['chartType'] ?>'});
+        graph.draw();
+    </script>
     <p>Chart title: <?= $data['title'] ?></p>
     <p>Chart data: <?= $data['data'] ?></p>
     <h3>Share your chart and data at the URLs below:</h3>
@@ -55,6 +62,8 @@ class ChartView extends View {
     <p><a href="?c=chart&a=show&arg1=jsonp&arg2=<?= $data['hash'] ?>&arg3=javascript_callback">
             <?= $data['baseURL'] ?>/?c=chart&amp;a=show&amp;arg1=jsonp&amp;arg2=<?= $data['hash'] ?>&amp;arg3=javascript_callback
     </a></p>
+    <br />
+    <br />
 </body>
 </html>
 <?php

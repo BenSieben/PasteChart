@@ -26,8 +26,7 @@ function Chart(chart_id, data)
     var property_defaults = {
         'axes_color' : 'rgb(128,128,128)', // color of the x and y axes lines
         'caption' : '', // caption text appears at bottom
-        'caption_style' : 'font-size: 14pt; text-align: center;',
-        // CSS styles to apply to caption text
+        'caption_style' : 'font-size: 14pt; text-align: center;', // CSS styles to apply to caption text
         'data_color' : 'rgb(0,0,255)', //color used to draw grah
         'height' : 500, //height of area to draw into in pixels
         'line_width' : 1, // width of line in line graph
@@ -38,10 +37,8 @@ function Chart(chart_id, data)
         'ticks_y' : 5, // number of tick marks to use for the y axis
         'tick_font_size' : 10, //size of font to use when labeling ticks
         'title' : '', // title text appears at top
-        'title_style' : 'font-size:24pt; text-align: center;',
-        // CSS styles to apply to title text
-        'type' : 'LineGraph', // currently, can be either a LineGraph or
-        //PointGraph
+        'title_style' : 'font-size:24pt; text-align: center;', // CSS styles to apply to title text
+        'type' : 'LineGraph', // currently, can be either a LineGraph or PointGraph
         'width' : 500 //width of area to draw into in pixels
     };
     for (var property_key in property_defaults) {
@@ -71,7 +68,7 @@ function Chart(chart_id, data)
     p.draw = function()
     {
         self['draw' + self.type]();
-    }
+    };
     /**
      * Used to store in fields the min and max y values as well as the start
      * and end x keys, and the range = max_y - min_y
@@ -98,7 +95,7 @@ function Chart(chart_id, data)
         }
         self.end = key;
         self.range = self.max_value - self.min_value;
-    }
+    };
     /**
      * Used to draw a point at location x,y in the canvas
      */
@@ -108,7 +105,7 @@ function Chart(chart_id, data)
         c.beginPath();
         c.arc(x, y, self.point_radius, 0, 2 * Math.PI, true);
         c.fill();
-    }
+    };
     /**
      * Draws the x and y axes for the chart as well as ticks marks and values
      */
@@ -161,7 +158,7 @@ function Chart(chart_id, data)
             c.stroke();
             x += dx;
         }
-    }
+    };
     /**
      * Draws a chart consisting of just x-y plots of points in data.
      */
@@ -183,7 +180,7 @@ function Chart(chart_id, data)
             self.plotPoint(x, y);
             x += dx;
         }
-    }
+    };
     /**
      * Draws a chart consisting of x-y plots of points in data, each adjacent
      * point pairs connected by a line segment

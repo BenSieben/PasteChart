@@ -23,7 +23,7 @@ class FormController extends Controller {
         && isset($_REQUEST['chartData']) && strcmp($_REQUEST['chartData'], '') !== 0) { // if title / chartData entered, check the values
             // TODO do actual checking of data instead of jumping straight to chart view
             $title = $_REQUEST['title'];
-            $data = $_REQUEST['chartData'];
+            $data = str_replace("\r", "", $_REQUEST['chartData']); // remove return carriages from chart data if they exist
             $md5 = hash("md5", $_REQUEST['chartData']);
             // insert data into database
             $cm = new ChartModel();

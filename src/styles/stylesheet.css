@@ -40,3 +40,20 @@ hovered anchors are white
 a:hover {
     color: #FFFFFF; /* white */
 }
+
+/*
+for chart id div (where graphs are drawn in the chart view)
+*/
+div#chart {
+    background: #FFFFFF; /* white */
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+Modify div inside the chart id div (i.e., the title inside the drawn chart)
+*/
+div#chart div {
+    color: #000000; /* black */
+}

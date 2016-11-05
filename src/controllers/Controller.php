@@ -24,6 +24,25 @@ class Controller {
                 $lc = new LandingController();
                 $lc->callView();
             }
+            else if(strcmp($_REQUEST['c'], 'form') === 0) { // use FormController
+                $fc = new FormController();
+                $fc->handleChartForm();
+            }
+            else if (strcmp($_REQUEST['c'], 'chart') === 0) { // use ChartController
+                if(isset($_REQUEST['a']) && isset($_REQUEST['arg1']) && isset($_REQUEST['arg2'])) {
+                    $cc = new ChartController();
+                    if(strcmp($_REQUEST['a'], 'show') === 0) { // make sure action chosen is 'show'
+                        if (isset($_REQUEST['arg3'])) { // if arg3 is set, be sure to pass it to show function as well
+                            $cc->show($_REQUEST['arg1'], $_REQUEST['arg2'], $_REQUEST['arg3']);
+                        } else { // if arg3 is not set, do not pass it to show function
+                            $cc->show($_REQUEST['arg1'], $_REQUEST['arg2']);
+                        }
+                    }
+                }
+                else { // if $_REQUEST['a'] or $_REQUEST['arg1'] or $_REQUEST['arg2'] is not set, then show default landing page
+                    header("Location: " . Config::BASE_URL . "?c=landing");
+                }
+            }
         }
         else { // if $_REQUEST['c'] is not set, then show default landing page
             header("Location: " . Config::BASE_URL . "?c=landing");

@@ -1,0 +1,14 @@
+//Issue 0014: add chart controller
+
+//Who is assigned this task
+Ben
+
+//Description
+Add the chart controller, which takes in what
+kinds of chart to draw and which chart data to pull from
+to draw the chart, and calls the appropriate view
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

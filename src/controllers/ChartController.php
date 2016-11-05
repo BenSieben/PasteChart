@@ -23,27 +23,43 @@ class ChartController extends Controller {
      */
     public function show($chartType, $dbEntryHash, $javascript_callback = null) {
         if(strcmp($chartType, 'LineGraph') === 0) { // show LineGraph
-            echo("<!-- LineGraph -->");
+            //TODO handle LineGraph
+            $this->setUpBasicData($chartType,$dbEntryHash);
         }
         else if (strcmp($chartType, 'PointGraph') === 0) { // show PointGraph
-            echo("<!-- PointGraph -->");
+            //TODO handle PointGraph
+            $this->setUpBasicData($chartType,$dbEntryHash);
         }
         else if (strcmp($chartType, 'Histogram') === 0) { // show Histogram
-            echo("<!-- Histogram -->");
+            //TODO handle Histogram
+            $this->setUpBasicData($chartType,$dbEntryHash);
         }
         else if (strcmp($chartType, 'xml') === 0) { // show xml
-            echo("<!-- xml -->");
+            //TODO handle xml
+            $this->setUpBasicData($chartType,$dbEntryHash);
         }
         else if (strcmp($chartType, 'json') === 0) { // show json
-            echo("<!-- json -->");
+            //TODO handle json
+            $this->setUpBasicData($chartType,$dbEntryHash);
         }
         else if (strcmp($chartType, 'jsonp') === 0) { // show jsonp
-            echo("<!-- jsonp -->");
+            //TODO handle jsonp
+            $this->setUpBasicData($chartType,$dbEntryHash);
         }
         else { // bad chartType given
-            echo("<!-- Bad chartType given ($chartType) for show function in ChartController! -->");
+            // send back to landing page when given bad chartType
+            header("Location: " . Config::BASE_URL . "?c=landing");
+            exit();
         }
-        // set up #data array to send to ChartView's render, and then call render with prepared #data
+    }
+
+    /**
+     * Sets up basic components of data and launches view
+     * @param $chartType String type of chart to display (LineGraph, PointGraph, etc.)
+     * @param $dbEntryHash String md5 hash of the chart data we would like to pull from the database
+     */
+    private function setUpBasicData($chartType, $dbEntryHash) {
+        // set up $data array to send to ChartView's render, and then call render with prepared #data
         $data['baseURL'] = Config::BASE_URL;
         $data['chartType'] = $chartType;
         $data['hash'] = $dbEntryHash;

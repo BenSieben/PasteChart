@@ -26,7 +26,7 @@ class ChartView extends View {
     <link rel="stylesheet" type="text/css" href="./src/styles/stylesheet.css" />
 </head>
 <body>
-    <h1><?= $data['hash'] ?> <?= $data['chartType'] ?> - PasteChart</h1>
+    <h1><?= $data['hash'] ?> <?= $data['chartType'] ?> - <a href="?c=landing">PasteChart</a></h1>
     <h2>Chart goes here</h2>
     <h3>Share your chart and data at the URLs below:</h3>
     <p>As a LineGraph:</p>

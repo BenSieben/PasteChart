@@ -1,5 +1,6 @@
 <?php
 namespace cs174\hw4\controllers;
+use \cs174\hw4\configs\Config as Config;
 use \cs174\hw4\views\ChartView as ChartView;
 
 /**
@@ -42,8 +43,12 @@ class ChartController extends Controller {
         else { // bad chartType given
             echo("<!-- Bad chartType given ($chartType) for show function in ChartController! -->");
         }
+        // set up #data array to send to ChartView's render, and then call render with prepared #data
+        $data['baseURL'] = Config::BASE_URL;
+        $data['chartType'] = $chartType;
+        $data['hash'] = $dbEntryHash;
         $view = new ChartView();
-        $view->render($_REQUEST);
+        $view->render($data);
     }
 }
 ?>

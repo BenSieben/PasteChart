@@ -27,3 +27,16 @@ h2 {
     font-style: italic;
 }
 
+/*
+anchors are light beige color
+*/
+a {
+    color: #FCF2E0; /* light beige */
+}
+
+/*
+hovered anchors are white
+*/
+a:hover {
+    color: #FFFFFF; /* white */
+}

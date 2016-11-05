@@ -23,8 +23,8 @@ class LandingView extends View {
 <head>
     <title>PasteChart</title>
     <meta charset="utf-8" />
-    <link rel="icon" href="src/resources/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="src/styles/stylesheet.css" />
+    <link rel="icon" href="./src/resources/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="./src/styles/stylesheet.css" />
 </head>
 <body>
     <h1>PasteChart</h1>
@@ -32,7 +32,7 @@ class LandingView extends View {
     <form name="chartForm" method="post" action="?c=form">
         <label>Chart Title
             <br />
-        <input type="text" name="title" />
+        <input type="text" name="title" value="" />
         </label>
         <br />
         <br />

@@ -14,7 +14,8 @@ namespace cs174\hw4\configs;
 class Config {
 
     //Constant for the full URL to where the index.php site is for PasteChart
-    const BASE_URL = "http://192.168.2.131/hw4/index.php";
+    //   (leave out /index.php at end to load files correctly when used)
+    const BASE_URL = "http://192.168.2.131/hw4";
 
     // Database connection constants
     const DB_HOST = "127.0.0.1"; // host for the database

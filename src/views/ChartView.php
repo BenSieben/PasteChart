@@ -20,29 +20,39 @@ class ChartView extends View {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PasteChart</title>
+    <title><?= $data['hash'] ?> <?= $data['chartType'] ?> - PasteChart</title>
     <meta charset="utf-8" />
-    <link rel="icon" href="src/resources/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="src/styles/stylesheet.css" />
+    <link rel="icon" href="./src/resources/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="./src/styles/stylesheet.css" />
 </head>
 <body>
-<h1>PasteChart</h1>
-<h2>Share your data in charts!</h2>
-<form name="chartForm" method="post" action="?c=form">
-    <label>Chart Title
-        <br />
-        <input type="text" name="title" />
-    </label>
-    <br />
-    <br />
-    <label>Chart Data
-        <br />
-        <textarea name="chartData" rows="25" cols="80" placeholder="<?= $textAreaPlaceholder ?>"></textarea>
-    </label>
-    <br />
-    <br />
-    <input type="submit" value="Share" />
-</form>
+    <h1><?= $data['hash'] ?> <?= $data['chartType'] ?> - PasteChart</h1>
+    <h2>Chart goes here</h2>
+    <h3>Share your chart and data at the URLs below:</h3>
+    <p>As a LineGraph:</p>
+    <p><a href="?c=chart&a=show&arg1=LineGraph&arg2=<?= $data['hash'] ?>">
+            <?= $data['baseURL'] ?>&frasl;?c=chart&amp;a=show&amp;arg1=LineGraph&amp;arg2=<?= $data['hash'] ?>
+    </a></p>
+    <p>As a PointGraph:</p>
+    <p><a href="?c=chart&a=show&arg1=PointGraph&arg2=<?= $data['hash'] ?>">
+            <?= $data['baseURL'] ?>&frasl;?c=chart&amp;a=show&amp;arg1=PointGraph&amp;arg2=<?= $data['hash'] ?>
+    </a></p>
+    <p>As a Histogram:</p>
+    <p><a href="?c=chart&a=show&arg1=Histogram&arg2=<?= $data['hash'] ?>">
+            <?= $data['baseURL'] ?>&frasl;?c=chart&amp;a=show&amp;arg1=Histogram&amp;arg2=<?= $data['hash'] ?>
+    </a></p>
+    <p>As XML data:</p>
+    <p><a href="?c=chart&a=show&arg1=xml&arg2=<?= $data['hash'] ?>">
+            <?= $data['baseURL'] ?>&frasl;?c=chart&amp;a=show&amp;arg1=xml&amp;arg2=<?= $data['hash'] ?>
+    </a></p>
+    <p>As JSON data:</p>
+    <p><a href="?c=chart&a=show&arg1=json&arg2=<?= $data['hash'] ?>">
+            <?= $data['baseURL'] ?>&frasl;?c=chart&amp;a=show&amp;arg1=json&amp;arg2=<?= $data['hash'] ?>
+    </a></p>
+    <p>As JSONP data:</p>
+    <p><a href="?c=chart&a=show&arg1=jsonp&arg2=<?= $data['hash'] ?>&arg3=javascript_callback">
+            <?= $data['baseURL'] ?>&frasl;?c=chart&amp;a=show&amp;arg1=jsonp&amp;arg2=<?= $data['hash'] ?>&amp;arg3=javascript_callback
+    </a></p>
 </body>
 </html>
 <?php

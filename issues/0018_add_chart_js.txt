@@ -7,6 +7,6 @@ Ben
 Add chart.js implementation from project description
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []
 

@@ -1,3 +1,4 @@
+//chart.js
 /**
  * Defines a class useful for making point and line graph charts.
  *

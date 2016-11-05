@@ -1,0 +1,14 @@
+//Issue 0013: add chart model
+
+//Who is assigned this task
+Ben
+
+//Description
+Add the chart model, which connects to the database to:
+    (1) Store *valid* chart data
+    (2) Retrieve chart data
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

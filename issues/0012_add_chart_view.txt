@@ -1,0 +1,17 @@
+//Issue 0012: add chart view
+
+//Who is assigned this task
+Ben
+
+//Description
+Add the chart view to the PasteChart
+website. This view displays a graph
+(default line) of a database entry
+of chart data. There is also links below that
+bring user to other "views" of the same
+chart data like histogram or point graph
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

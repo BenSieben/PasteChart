@@ -1,0 +1,14 @@
+//Issue 0014: add form controller
+
+//Who is assigned this task
+Ben
+
+//Description
+Add the form controller, which handles data being
+passed into the landing page to accept / reject
+user form data and then redirect user to appropriate page
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

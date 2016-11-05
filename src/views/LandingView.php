@@ -28,8 +28,8 @@ class LandingView extends View {
 </head>
 <body>
     <h1>PasteChart</h1>
-    <p>Share your data in charts!</p>
-    <form>
+    <h2>Share your data in charts!</h2>
+    <form name="chartForm" method="post" action="?c=form">
         <label>Chart Title
             <br />
         <input type="text" name="title" />

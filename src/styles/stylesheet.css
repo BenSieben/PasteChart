@@ -13,3 +13,17 @@ body {
     color: #FFD4AE; /* beige */
 }
 
+/*
+bold h1 text
+*/
+h1 {
+    font-weight: bold;
+}
+
+/*
+italicize h2 text
+*/
+h2 {
+    font-style: italic;
+}
+

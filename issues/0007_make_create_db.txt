@@ -1,11 +1,12 @@
-//Issue 0004: implement base classes
+//Issue 0007: make create db
 
 //Who is assigned this task
 Ben
 
 //Description
-Add actual code to base classes
+Make CreateDB script to generate needed database
+for PasteChart website
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []

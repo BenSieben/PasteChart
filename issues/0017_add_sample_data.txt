@@ -1,0 +1,14 @@
+//Issue 0017: add dsmple data
+
+//Who is assigned this task
+Ben
+
+//Description
+Add sample data in CreateDB to test
+that data is being graphed correctly
+and can be retrieved correctly
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

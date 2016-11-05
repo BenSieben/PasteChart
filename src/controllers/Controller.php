@@ -38,6 +38,9 @@ class Controller {
                             $cc->show($_REQUEST['arg1'], $_REQUEST['arg2']);
                         }
                     }
+                    else { // if $_REQUEST['a'] is not a known value, then show default landing page
+                        header("Location: " . Config::BASE_URL . "?c=landing");
+                    }
                 }
                 else { // if $_REQUEST['a'] or $_REQUEST['arg1'] or $_REQUEST['arg2'] is not set, then show default landing page
                     header("Location: " . Config::BASE_URL . "?c=landing");

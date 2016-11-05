@@ -1,0 +1,14 @@
+//Issue 0016: add chart view
+
+//Who is assigned this task
+Ben
+
+//Description
+Add the chart view, which draws a graph and
+gives links to view all the different ways
+the same chart data can be charted
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

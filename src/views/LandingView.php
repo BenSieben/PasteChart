@@ -12,7 +12,7 @@ class LandingView extends View {
 
     /**
      * Uses HTMl to draw the landing page for the PasteChart website
-     * @param Array $data Array<String> array of data to show in the view
+     * @param $data Array<String> array of data to show in the view
      */
     function render($data) {
         // create a variable to hold the text area placeholder because the explanation is very long

@@ -9,6 +9,6 @@ Add the chart model, which connects to the database to:
     (2) Retrieve chart data
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []
 

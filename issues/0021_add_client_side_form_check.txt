@@ -9,6 +9,6 @@ tries to submit their chart on client side
 (i.e., with JavaScript)
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []
 

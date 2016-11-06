@@ -25,11 +25,13 @@ class LandingView extends View {
     <meta charset="utf-8" />
     <link rel="icon" href="./src/resources/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="./src/styles/stylesheet.css" />
+    <script src="./src/resources/landingFormCheck.js"></script>
 </head>
 <body>
     <h1>PasteChart</h1>
     <h2>Share your data in charts!</h2>
-    <form name="chartForm" method="post" action="?c=form">
+    <div id="clientErrorMessage"></div> <!-- This div gets filled by validateForm() in landingFormCheck.js if error is detected -->
+    <form name="chartForm" action="?c=form" onsubmit="return validateForm()" method="post">
         <label>Chart Title
             <br />
         <input type="text" name="title" value="" />

@@ -91,7 +91,7 @@ class ChartController extends Controller {
         }
         else {
             foreach($result as $row) { // use foreach to easily get result of query (only expect a single $row)
-                $data['title'] = $row['title'];
+                $data['title'] = htmlspecialchars($row['title']); // use htmlspecialchars to safely display title
                 $data['data'] = $row['data'];
             }
         }

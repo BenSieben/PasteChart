@@ -1,0 +1,15 @@
+//Issue 0022: add server side form check
+
+//Who is assigned this task
+Ben
+
+//Description
+Have at least 2 simpletest unit tests to test number of items
+in tuple and number of line and line length constraints on server
+side when user tries to submit chart data, and then react
+accordingly
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

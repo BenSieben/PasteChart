@@ -1,0 +1,14 @@
+//Issue 0021: add client side form check
+
+//Who is assigned this task
+Ben
+
+//Description
+Check landing page form contents when the user
+tries to submit their chart on client side
+(i.e., with JavaScript)
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

@@ -39,8 +39,8 @@ $mysqli->query("CREATE TABLE Chart(md5 CHAR(32), " .
 
 // add sample data to the database
 //   note that there are some lacking entries in the $data; this is to test that we can leave slots empty
-$title = "Test Chart";
-$data = "Jan,600,5.4\nFeb,450,5.0\nMar,400,4.8\nApr,380,4.5\nMay,450,4.0\nJun,500,\nJul,400,4.6\nAug,,10.1";
+$title = "Rabbit and Wolf Population Over Time Chart";
+$data = "Jan,600,5.4\nFeb,450,5.0\nMar,400,4.8\nApr,380,4.5\nMay,450,4.0\nJun,500,3.8\nJul,400,4.6\nAug,50,10.11";
 $md5 = hash("md5", $data);
 $cm = new ChartModel();
 $result = $cm->insertChartEntry($md5, $title, $data);

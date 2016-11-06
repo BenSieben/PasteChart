@@ -24,9 +24,10 @@ class Config {
     const DB_DATABASE = "PasteChart"; // name of database schema to use for all the website data
     const DB_PORT = "3307"; // port that database is on (note how this is NOT default port 3306!)
 
-    // Database relation constants
-    const MAX_TITLE_LENGTH = 50; // max number of characters for a chart title
+    // Chart information constants
+    const MAX_TITLE_LENGTH = 60; // max number of characters for a chart title
     const MAX_DATA_LINES = 50; // max number of lines (rows) for data
     const MAX_DATA_LINE_LENGTH = 80; // max number of characters per line of data
+    const MAX_VALUES_PER_LINE = 5; // max number of values that can be associated with any line of the graph
 }
 ?>

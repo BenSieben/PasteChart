@@ -28,15 +28,26 @@ class ChartView extends View {
 </head>
 <body>
     <h1><?= $data['hash'] ?> <?= $data['chartType'] ?> - <a href="?c=landing">PasteChart</a></h1>
+<?php
+        if(in_array($data['chartType'], $data['drawChartTypes'])) { // check if we should use chart.js
+?>
     <div id="chart"></div>
     <script type="text/javascript">
         graph = new Chart('chart',
-            {'Jan':7, 'Feb':20, 'Dec':5},
+            <!-- {'Jan':7, 'Feb':20, 'Dec':5}, -->
+            <?= $data['chartDataJSObjectText'] ?>,
             {'title':'<?= $data['title'] ?>', 'type':'<?= $data['chartType'] ?>'});
         graph.draw();
     </script>
+<?php
+        }
+        else {
+?>
     <p>Chart title: <?= $data['title'] ?></p>
     <p>Chart data: <?= $data['data'] ?></p>
+<?php
+        }
+    ?>
     <h3>Share your chart and data at the URLs below:</h3>
     <p>As a LineGraph:</p>
     <p><a href="?c=chart&a=show&arg1=LineGraph&arg2=<?= $data['hash'] ?>">

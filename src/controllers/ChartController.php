@@ -25,33 +25,51 @@ class ChartController extends Controller {
     public function show($chartType, $dbEntryHash, $javascript_callback = null) {
         if(strcmp($chartType, 'LineGraph') === 0) { // show LineGraph
             //TODO handle LineGraph
-            $this->setUpBasicData($chartType, $dbEntryHash);
+            $data = $this->setUpBasicData($chartType, $dbEntryHash);
+            $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
+            $this->launchView($data);
         }
         else if (strcmp($chartType, 'PointGraph') === 0) { // show PointGraph
             //TODO handle PointGraph
-            $this->setUpBasicData($chartType, $dbEntryHash);
+            $data = $this->setUpBasicData($chartType, $dbEntryHash);
+            $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
+            $this->launchView($data);
         }
         else if (strcmp($chartType, 'Histogram') === 0) { // show Histogram
             //TODO handle Histogram
-            $this->setUpBasicData($chartType, $dbEntryHash);
+            $data = $this->setUpBasicData($chartType, $dbEntryHash);
+            $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
+            $this->launchView($data);
         }
         else if (strcmp($chartType, 'xml') === 0) { // show xml
             //TODO handle xml
-            $this->setUpBasicData($chartType, $dbEntryHash);
+            $data = $this->setUpBasicData($chartType, $dbEntryHash);
+            $this->launchView($data);
         }
         else if (strcmp($chartType, 'json') === 0) { // show json
             //TODO handle json
-            $this->setUpBasicData($chartType, $dbEntryHash);
+            $data = $this->setUpBasicData($chartType, $dbEntryHash);
+            $this->launchView($data);
         }
         else if (strcmp($chartType, 'jsonp') === 0) { // show jsonp
             //TODO handle jsonp
-            $this->setUpBasicData($chartType, $dbEntryHash);
+            $data = $this->setUpBasicData($chartType, $dbEntryHash);
+            $this->launchView($data);
         }
         else { // bad chartType given
             // send back to landing page when given bad chartType
             header("Location: " . Config::BASE_URL . "?c=landing");
             exit();
         }
+    }
+
+    /**
+     * Gets the view to render
+     * @param $data Array of data the view needs for rendering
+     */
+    private function launchView($data) {
+        $view = new ChartView();
+        $view->render($data);
     }
 
     /**
@@ -77,8 +95,40 @@ class ChartController extends Controller {
                 $data['data'] = $row['data'];
             }
         }
-        $view = new ChartView();
-        $view->render($data);
+        // array ot chartTypes which use chart.js (so view knows whether to use chart.js or not)
+        $data['drawChartTypes'] = ['LineGraph', 'PointGraph', 'Histogram'];
+        return $data;
+    }
+
+    /**
+     * Converts a given dataString into the JavaScript object format,
+     * which is needed when using chart.js
+     * @param $dataString String original data of the chart
+     * @return String JavaScript object format of the chart data
+     */
+    private function getChartJSObjectText($dataString) {
+        // split data back into array form by exploding on newline
+        $arr = explode("\n", $dataString);
+
+        // pull data from array of lines into new obj array (doing better formatting)
+        $obj = [];
+
+        // TODO handle adding multiple values (up to 5) rather than just the first value per line
+        foreach($arr as $row) {
+            $rowArr = explode(",", $row);
+            $objEntry = array($rowArr[0] => doubleval($rowArr[1]));
+            array_push($obj, $objEntry);
+        }
+        // json_encode the new obj array
+        $encode = json_encode($obj);
+
+        // fix formatting of json_encode to exactly match what chart.js expects
+        $fixedFormatEncode = str_replace("{", "", $encode);
+        $fixedFormatEncode = str_replace("}", "", $fixedFormatEncode);
+        $fixedFormatEncode = str_replace("[", "{", $fixedFormatEncode);
+        $fixedFormatEncode = str_replace("]", "}", $fixedFormatEncode);
+
+        return $fixedFormatEncode;
     }
 }
 ?>

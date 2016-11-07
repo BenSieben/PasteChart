@@ -14,9 +14,9 @@ function validateForm() {
         return false;
     }
 
-    // second check: make sure data is not completely empty
+    // second check: make sure data is not completely empty (and has at least one comma)
     var d = document.forms["chartForm"]["chartData"].value;
-    if(d == null || d.trim() == "") {
+    if(d == null || d.trim() == "" || d.indexOf(",") === -1 || d.trim().length < 3) {
         document.getElementById('clientErrorMessage').innerHTML =
             '<p>Error: please enter valid chart data with at least one row to graph</p>';
         setTimeout(function(){

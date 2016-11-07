@@ -30,7 +30,7 @@ class FormController extends Controller {
             $cm = new ChartModel();
             $result = $cm->insertChartEntry($md5, $title, $data);
             if(!$result) { // if insert failed, send user back to landing page
-                header("Location: " . Config::BASE_URL . "?c=landing&t=" . urlencode($_REQUEST['title']) . "&d=" .
+                header("Location: " . Config::BASE_URL . "/?c=landing&t=" . urlencode($_REQUEST['title']) . "&d=" .
                     urlencode($_REQUEST['chartData']) . "&err=" . urlencode("Error: unable to save chart data to server. " .
                     "Please try again."));
                 exit();
@@ -52,7 +52,7 @@ class FormController extends Controller {
                 $d = "";
             }
 
-            header("Location: " . Config::BASE_URL . "?c=landing&t=$t&d=$d&err=" . urlencode("Error: title and / or " .
+            header("Location: " . Config::BASE_URL . "/?c=landing&t=$t&d=$d&err=" . urlencode("Error: title and / or " .
                 "chart data was not filled in"));
         }
     }

@@ -20,6 +20,7 @@ class ChartModel extends Model {
     public function insertChartEntry($md5, $title, $data) {
         // reject if any of the parameters are null or empty strings
         if(is_null($md5) || is_null($title) || is_null($data)
+        || !is_string($md5) || !is_string($title) || !is_string($data)
         || strcmp($md5, '') === 0 || strcmp($title, '') === 0 || strcmp($data, '') === 0) {
             return false;
         }
@@ -47,7 +48,7 @@ class ChartModel extends Model {
      */
     public function getChartEntry($md5) {
         // reject if $md5 is null or empty string
-        if(is_null($md5) || strcmp($md5, '') === 0) {
+        if(is_null($md5) || !is_string($md5) || strcmp($md5, '') === 0) {
             return false;
         }
         $mysqli = parent::getDatabaseConnection();

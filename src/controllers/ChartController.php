@@ -64,7 +64,7 @@ class ChartController extends Controller {
         }
         else { // bad chartType given
             // send back to landing page when given bad chartType
-            header("Location: " . Config::BASE_URL . "?c=landing");
+            header("Location: " . Config::BASE_URL . "/?c=landing");
             exit();
         }
     }

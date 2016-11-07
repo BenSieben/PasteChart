@@ -58,6 +58,9 @@ class ChartModel extends Model {
         $result = $statement->get_result();
         $statement->close();
         $mysqli->close();
+        if($result->num_rows === 0) { // if number of rows returned by query is 0, we did not give a good $md5
+            return false;
+        }
         return $result;
     }
 }

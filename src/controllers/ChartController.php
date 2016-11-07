@@ -26,19 +26,25 @@ class ChartController extends Controller {
         if(strcmp($chartType, 'LineGraph') === 0) { // show LineGraph
             //TODO handle LineGraph
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
-            $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
+            if(!isset($data['noDBEntry'])) {
+                $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
+            }
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'PointGraph') === 0) { // show PointGraph
             //TODO handle PointGraph
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
-            $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
+            if(!isset($data['noDBEntry'])) {
+                $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
+            }
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'Histogram') === 0) { // show Histogram
             //TODO handle Histogram
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
-            $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
+            if(!isset($data['noDBEntry'])) {
+                $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
+            }
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'xml') === 0) { // show xml
@@ -88,7 +94,7 @@ class ChartController extends Controller {
         if(!$result) {
             // if hash is not found in DB, we alert view to this so we can show an error page
             $data['noDBEntry'] = "Error: given hash &quot;" . htmlspecialchars($data['hash']) . "&quot; does not " .
-                "exist in database. Please double-check that the hash is correct";
+                "exist in the database. Please double-check that the hash is correct";
         }
         else {
             foreach($result as $row) { // use foreach to easily get result of query (only expect a single $row)

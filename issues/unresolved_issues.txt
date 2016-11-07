@@ -1,6 +1,5 @@
 // List of currently unresolved issues
 
-0011
 0014
 0015
 0016

@@ -9,6 +9,6 @@ placeholder and correct the form to have
 the URL to go to for checking the form data
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []
 

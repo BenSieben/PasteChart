@@ -32,7 +32,7 @@ class ChartView extends View {
 <?php
         if (isset($data['noDBEntry'])) { // if this index is set, that means link is not valid
 ?>
-    <div id="serverErrorMessage"><p><?= $data['noDBEntry'] ?></p></div>
+    <div id="serverErrorMessage"><?= $data['noDBEntry'] ?></div>
 <?php
         } else {
             if (in_array($data['chartType'], $data['drawChartTypes'])) { // check if we should use chart.js

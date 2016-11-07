@@ -93,8 +93,8 @@ class ChartController extends Controller {
         $result = $cm->getChartEntry($dbEntryHash);
         if(!$result) {
             // if hash is not found in DB, we alert view to this so we can show an error page
-            $data['noDBEntry'] = "Error: given hash &quot;" . htmlspecialchars($data['hash']) . "&quot; does not " .
-                "exist in the database. Please double-check that the hash is correct";
+            $data['noDBEntry'] = "<p>Error: given hash &quot;" . htmlspecialchars($data['hash']) . "&quot; does not " .
+                "exist in the database. Please double-check that the hash is correct</p>";
         }
         else {
             foreach($result as $row) { // use foreach to easily get result of query (only expect a single $row)

@@ -57,7 +57,7 @@ class LandingController extends Controller {
 
         // set up server reject message
         if(isset($_REQUEST['err'])) {
-            $data['serverError'] = $_REQUEST['err'];
+            $data['serverError'] = "<p>" . $_REQUEST['err'] . "</p>";
         }
         else {
             $data['serverError'] = "";

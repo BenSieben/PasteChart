@@ -28,7 +28,7 @@ class LandingView extends View {
 <body>
     <h1>PasteChart</h1>
     <h2>Share your data in charts!</h2>
-    <div id="serverErrorMessage"><p><?= $data['serverError'] ?></p></div>
+    <div id="serverErrorMessage"><?= $data['serverError'] ?></div>
     <form name="chartForm" action="?c=form" onsubmit="return validateForm()" method="post">
         <label>Chart Title
             <br />
@@ -44,7 +44,7 @@ class LandingView extends View {
         <br />
         <input type="submit" value="Share" />
     </form>
-    <div id="clientErrorMessage"></div> <!-- This div gets filled by validateForm() in landingFormCheck.js if error is detected -->
+    <div id="clientErrorMessage"></div>
 </body>
 </html>
 <?php

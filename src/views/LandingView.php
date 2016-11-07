@@ -15,8 +15,6 @@ class LandingView extends View {
      * @param $data Array<String> array of data to show in the view
      */
     function render($data) {
-        // create a variable to hold the text area placeholder because the explanation is very long
-        $textAreaPlaceholder = 'Input chart data here!';
 ?>
 <!DOCTYPE html>
 <html>
@@ -30,22 +28,23 @@ class LandingView extends View {
 <body>
     <h1>PasteChart</h1>
     <h2>Share your data in charts!</h2>
-    <div id="clientErrorMessage"></div> <!-- This div gets filled by validateForm() in landingFormCheck.js if error is detected -->
+    <div id="serverErrorMessage"><p><?= $data['serverError'] ?></p></div>
     <form name="chartForm" action="?c=form" onsubmit="return validateForm()" method="post">
         <label>Chart Title
             <br />
-        <input type="text" name="title" value="" />
+        <input type="text" name="title" value="<?= $data['title'] ?>" />
         </label>
         <br />
         <br />
         <label>Chart Data
             <br />
-            <textarea name="chartData" rows="25" cols="80" placeholder="<?= $textAreaPlaceholder ?>"></textarea>
+            <textarea name="chartData" rows="25" cols="80" placeholder="<?= $data['dataPlaceholder'] ?>"><?= $data['chartData'] ?></textarea>
         </label>
         <br />
         <br />
         <input type="submit" value="Share" />
     </form>
+    <div id="clientErrorMessage"></div> <!-- This div gets filled by validateForm() in landingFormCheck.js if error is detected -->
 </body>
 </html>
 <?php

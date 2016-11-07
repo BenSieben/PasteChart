@@ -86,7 +86,9 @@ class ChartController extends Controller {
         $cm = new ChartModel();
         $result = $cm->getChartEntry($dbEntryHash);
         if(!$result) {
-            // TODO react to tuple get failure
+            // TODO if hash is not found in DB, we must give error
+            $data['noDBEntry'] = "Error: given hash &quot;" . htmlspecialchars($data['hash']) . "&quot; does not " .
+                "exist in database. Please double-check that the hash is correct";
             echo("<!-- Failed to load result -->");
         }
         else {

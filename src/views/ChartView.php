@@ -80,11 +80,12 @@ class ChartView extends View {
             <?= $data['baseURL'] ?>/?c=chart&amp;a=show&amp;arg1=jsonp&amp;arg2=<?= $data['hash'] ?>&amp;arg3=javascript_callback
         </a></p>
 <?php
-        }
-    }
-}
-?>
+        }?>
     <br/>
     <br/>
 </body>
 </html>
+<?php
+    }
+}
+?>

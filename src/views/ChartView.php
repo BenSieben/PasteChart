@@ -28,8 +28,8 @@ class ChartView extends View {
     <script src="./src/resources/chart.js"></script>
 </head>
 <body>
-        <h1><?= $data['hash'] ?> <?= $data['chartType'] ?> - <a href="?c=landing">PasteChart</a></h1>
-        <?php
+    <h1><?= $data['hash'] ?> <?= $data['chartType'] ?> - <a href="?c=landing">PasteChart</a></h1>
+<?php
         if (isset($data['noDBEntry'])) { // if this index is set, that means link is not valid
 ?>
     <div id="serverErrorMessage"><?= $data['noDbEntry'] ?></div>

@@ -35,6 +35,6 @@ function validateForm() {
         return false;
     }
 
-    // let form go to server if the three basic checks are met
+    // let form go to server if the basic checks are met
     return true;
 }

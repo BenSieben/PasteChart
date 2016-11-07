@@ -42,14 +42,14 @@ class LandingController extends Controller {
 
         // set up values to automatically place in title / data fields
         if(isset($_REQUEST['t'])) {
-            $data['title'] = $_REQUEST['t'];
+            $data['title'] = urldecode($_REQUEST['t']);
         }
         else {
             $data['title'] = "";
         }
 
         if(isset($_REQUEST['d'])) {
-            $data['chartData'] = $_REQUEST['d'];
+            $data['chartData'] = urldecode($_REQUEST['d']);
         }
         else {
             $data['chartData'] = "";
@@ -57,7 +57,7 @@ class LandingController extends Controller {
 
         // set up server reject message
         if(isset($_REQUEST['err'])) {
-            $data['serverError'] = "<p>" . $_REQUEST['err'] . "</p>";
+            $data['serverError'] = "<p>" . urldecode($_REQUEST['err']) . "</p>";
         }
         else {
             $data['serverError'] = "";

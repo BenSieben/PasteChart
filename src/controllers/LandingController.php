@@ -38,7 +38,9 @@ class LandingController extends Controller {
             "10 and 20}. [2] Each line can go up to a maximum of " . Config::MAX_DATA_LINE_LENGTH ." characters " .
             "(including comma separators). [3] There is a maximum of " . Config::MAX_DATA_LINES . "lines of data to " .
             "plot. [4] The first line must specify values for all y-values, but subsequent lines can leave y-values " .
-            "blank (simply use empty string as placeholder).";
+            "blank (simply use empty string as placeholder). [6] Since commas are reserved as a delimiter, " .
+            "they cannot be used in labels. Also, be sure to NOT include any spacing with the commas, as that " .
+            "will cause errors to be detected, when there is really no problem with the data";
 
         // set up values to automatically place in title / data fields
         if(isset($_REQUEST['t'])) {

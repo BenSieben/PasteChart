@@ -89,7 +89,7 @@ class ChartDataTester extends \UnitTestCase {
             // for each line, extract all the values and test all the non x-value
             //   entries for being an accepted number
             $line_contents = explode(",", $line);
-            for($j = 1; $j < count($line_contents); $j++) {
+            for($j = 1; $j < count($line_contents); $j++) { // start at 1 because 0 index is just the x-label
                 if($i === 0) { // empty values are not acceptable for first line
                     if(preg_match($double_regex, $line_contents[$j]) !== 1) {
                         // we found something that should be a value to graph that is not

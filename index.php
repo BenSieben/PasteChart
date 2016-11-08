@@ -10,7 +10,7 @@ spl_autoload_register(function ($className) {
     $prefix = 'src/';
 
     // then directory of class (since all classes in this website have namespaces
-    //   cs174\hw3\...  in folders named ...) we do some string manipulation
+    //   cs174\hw4\...  in folders named ...) we do some string manipulation
     //   to extract the proper directory to jump to for requiring the class
     //   (replacing backslash with forward slash, and only include name of class
     //   starting after cs175\hw4\ in namespace to get file directory of the class)

@@ -21,11 +21,11 @@ class FormController extends Controller {
     public function handleChartForm() {
         if(isset($_REQUEST['title']) && strcmp($_REQUEST['title'], '') !== 0
         && isset($_REQUEST['chartData']) && strcmp($_REQUEST['chartData'], '') !== 0) { // if title / chartData entered, check the values
-            // TODO do actual checking of data instead of jumping straight to chart view
-
             $title = $_REQUEST['title'];
             $data = str_replace("\r", "", $_REQUEST['chartData']); // remove return carriages from chart data if they exist
-            $md5 = hash("md5", $_REQUEST['chartData']);
+            $data = preg_replace("/\n+/", "\n", $data); // remove extra newlines
+            $this->verifyChartForm($title, $data); // TODO do actual checking of data instead of jumping straight to chart view
+            $md5 = hash("md5", $data);
             // insert data into database
             $cm = new ChartModel();
             $result = $cm->insertChartEntry($md5, $title, $data);
@@ -55,6 +55,17 @@ class FormController extends Controller {
             header("Location: " . Config::BASE_URL . "/?c=landing&t=$t&d=$d&err=" . urlencode("Error: title and / or " .
                 "chart data was not filled in"));
         }
+    }
+
+    /**
+     * Checks that the given $title and $data conform to expected standards
+     * @param $title String title of chart to submit to database
+     * @param $data String data of chart to submit to database
+     */
+    private function verifyChartForm($title, $data){
+        //TODO be sure to use at least 2 SimpleTest unit tests
+        // 1 to check number of items in tuple
+        // 2 to check number of lines and line length constraints
     }
 }
 ?>

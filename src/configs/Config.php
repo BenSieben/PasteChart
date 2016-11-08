@@ -15,8 +15,8 @@ class Config {
 
     //Constant for the full URL to where the index.php site is for PasteChart
     //   (leave out /index.php at end to load files correctly when used)
-    const BASE_URL = "http://192.168.2.131/hw4";
-    //const BASE_URL = "http://10.250.22.186/hw4";
+    //const BASE_URL = "http://192.168.2.131/hw4";
+    const BASE_URL = "http://10.250.22.186/hw4";
 
     // Database connection constants
     const DB_HOST = "127.0.0.1"; // host for the database

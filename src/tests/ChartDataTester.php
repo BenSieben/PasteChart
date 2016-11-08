@@ -90,7 +90,7 @@ class ChartDataTester extends \UnitTestCase {
             //   entries for being an accepted number
             $line_contents = explode(",", $line);
             for($j = 1; $j < count($line_contents); $j++) {
-                if($i === 1) { // empty values are not acceptable for first line
+                if($i === 0) { // empty values are not acceptable for first line
                     if(preg_match($double_regex, $line_contents[$j]) !== 1) {
                         // we found something that should be a value to graph that is not
                         //   a number if we get here, so report this
@@ -99,7 +99,7 @@ class ChartDataTester extends \UnitTestCase {
                     }
                 }
                 else { // empty values are acceptable for non-first lines, so we must check that as well
-                    if(strlen($line_contents[$j]) === 0 || preg_match($double_regex, $line_contents[$j]) !== 1) {
+                    if(strlen($line_contents[$j]) !== 0 && preg_match($double_regex, $line_contents[$j]) !== 1) {
                         // we found something that should be a value to graph that is not
                         //   a number if we get here, so report this
                         $all_values_double = false;

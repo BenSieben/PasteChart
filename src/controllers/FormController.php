@@ -23,7 +23,7 @@ class FormController extends Controller {
         && isset($_REQUEST['chartData']) && strcmp($_REQUEST['chartData'], '') !== 0) { // if title / chartData entered, check the values
             $title = $_REQUEST['title'];
             $data = str_replace("\r", "", $_REQUEST['chartData']); // remove return carriages from chart data if they exist
-            $data = preg_replace("/\n+/", "\n", $data); // remove extra newlines
+            $data = preg_replace("/\n+/", "\n", $data); // remove extra newlines between lines
             $this->verifyChartForm($title, $data); // TODO do actual checking of data instead of jumping straight to chart view
             $md5 = hash("md5", $data);
             // insert data into database

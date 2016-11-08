@@ -14,7 +14,18 @@ function validateForm() {
         return false;
     }
 
-    // second check: make sure data is not completely empty (and has at least one comma)
+    // second check: make sure title is not too long
+    var maxTitleLength = 100;
+    if(t.length > maxTitleLength) {
+        document.getElementById('clientErrorMessage').innerHTML =
+            '<p>Error: title can only have up to ' + maxTitleLength + ' characters</p>';
+        setTimeout(function(){
+            document.getElementById('clientErrorMessage').innerHTML = '';
+        }, 5000);
+        return false;
+    }
+
+    // third check: make sure data is not completely empty (and has at least one comma)
     var d = document.forms["chartForm"]["chartData"].value;
     if(d == null || d.trim() == "" || d.indexOf(",") === -1 || d.trim().length < 3) {
         document.getElementById('clientErrorMessage').innerHTML =
@@ -26,7 +37,8 @@ function validateForm() {
     }
 
     // third check: make sure data is not too long
-    if(d.length > 4000) {
+    var maxDataLength = (50 * 80) + 50; // 50 * 80 = 50 max rows * 80 max characters per line; + 50 = including newline characters
+    if(d.length > maxDataLength) {
         document.getElementById('clientErrorMessage').innerHTML =
             '<p>Error: data is too long. There should be a maximum of 50 data lines with up to 80 characters each</p>';
         setTimeout(function(){

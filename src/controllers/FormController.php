@@ -66,6 +66,8 @@ class FormController extends Controller {
         //TODO be sure to use at least 2 SimpleTest unit tests
         // 1 to check number of items in tuple
         // 2 to check number of lines and line length constraints
+
+        //Step 1: use the ChartDataTester to run some SimpleTest unit tests on the data
     }
 }
 ?>

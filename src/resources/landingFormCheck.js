@@ -37,7 +37,8 @@ function validateForm() {
     }
 
     // third check: make sure data is not too long
-    var maxDataLength = (50 * 80) + 50; // 50 * 80 = 50 max rows * 80 max characters per line; + 50 = including newline characters
+    // 50 * 80 = 50 max rows * 80 max characters per line; + 100 = including return carriage and newline characters on each line
+    var maxDataLength = (50 * 80) + 100;
     if(d.length > maxDataLength) {
         document.getElementById('clientErrorMessage').innerHTML =
             '<p>Error: data is too long. There should be a maximum of 50 data lines with up to 80 characters each</p>';

@@ -10,6 +10,6 @@ side when user tries to submit chart data, and then react
 accordingly
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []
 

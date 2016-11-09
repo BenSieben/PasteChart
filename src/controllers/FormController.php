@@ -79,11 +79,11 @@ class FormController extends Controller {
 
         // Step 1: check the title for validity
         if(strlen($title) === 0) {
-            array_push($errors, "Error: title needs to have at least one character<br />");
+            array_push($errors, "Error: title needs to have at least one character<br /><br />");
         }
         else if(strlen($title) > Config::MAX_TITLE_LENGTH) {
             array_push($errors, "Error: title exceeds maximum character length of " . Config::MAX_TITLE_LENGTH .
-                "Excess characters have been trimmed off.<br />");
+                "Excess characters have been trimmed off<br /><br />");
             $newTitle = substr($title, 0, Config::MAX_TITLE_LENGTH);
         }
 
@@ -93,20 +93,38 @@ class FormController extends Controller {
         $cdt_results = $cdt->getResults();
 
         // check cdt_results to see if any problematic lines were found
-        // if so, first find out which problem(s) occurred
+        // if so, first record out which problem(s) occurred
         // also record which lines caused problems
-        $problem_keys = []; // will hold the key(s) from cdt_results that indicate a problem with data line(s)
         $problem_lines = [];
         foreach($cdt_results as $key => $value) {
-
+            if(count($value) > 0) { // i.e., this value has at least one problematic line detected
+                array_push($errors, $this->getErrorString($key)); // add error message for the current key to errors string
+                $problem_lines = array_unique(array_merge($problem_lines, $value)); // merge up all unique lines into problem lines
+            }
         }
 
         // make new data which does not have all the problematic lines to
         //   create $newData, which will be used when redirecting the user
         //   back to the landing page
+        $split_data = explode("\n", $data);
+        $new_split_data = []; // will hold the non-problematic lines from data
+        for($i = 0; $i < count($split_data); $i++) {
+            if(!in_array($i, $problem_lines)) {
+                // if $i is not a problem line, add it to new split data
+                array_push($new_split_data, $split_data[$i]);
+            }
+        }
+        $newData = implode("\r\n", $new_split_data); // put non-problematic lines back into a single string
 
         // Step 3: determine if any errors were detected in testing, and if so, redirect
         //   user back to landing page with cleaned form values (and error messages)
+        if(count($errors) > 0) {
+            // if we have at least one error, we redirect user back to landing page
+            //   with cleaned data
+            header("Location: " . Config::BASE_URL . "/?c=landing&t=" . urlencode($newTitle) . "&d=" .
+                urlencode($newData) . "&err=" . urlencode(implode("", $errors)));
+            exit();
+        }
     }
 
     /**
@@ -119,22 +137,22 @@ class FormController extends Controller {
     private function getErrorString($key) {
         switch($key) {
             case 'lines_after_maximum_allowed_lines':
-                return "Error: maximum number of lines exceeded. Excess lines have been removed<br />";
+                return "Error: maximum number of lines exceeded. Excess lines have been removed<br /><br />";
             case 'lines_with_non_matching_values':
                 return "Error: lines with number of values not matching the first line have been " .
-                    "detected. These lines have been removed. <br />";
+                    "detected. These lines have been removed<br /><br />";
             case 'lines_with_too_many_values':
                 return "Error: lines with too many values (more than " . Config::MAX_VALUES_PER_LINE .
-                    ") detected. These lines have been removed<br />";
+                    ") detected. These lines have been removed<br /><br />";
             case 'lines_with_too_few_values':
-                return "Error: lines with no values detected. These lines have been removed <br />";
+                return "Error: lines with no values detected. These lines have been removed<br /><br />";
             case 'lines_with_too_many_characters':
                 return "Error: lines exceeding " . Config::MAX_DATA_LINE_LENGTH . " characters have been " .
-                    "detected. These lines have been removed<br />";
+                    "detected. These lines have been removed<br /><br />";
             case 'lines_with_non_numeric_values':
-                return "Error: lines with non-numeric values have been detected. These lines have been removed<br />";
+                return "Error: lines with non-numeric values have been detected. These lines have been removed<br /><br />";
             case 'lines_with_invalid_labeling':
-                return "Error: lines missing a label have been detected. These lines have been removed<br />";
+                return "Error: lines missing a label have been detected. These lines have been removed<br /><br />";
             default:
                 return "";
         }

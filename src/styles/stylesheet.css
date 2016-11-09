@@ -86,9 +86,8 @@ div#serverErrorMessage p{
 for xml / json / jsonp code display for sharing chart data
 */
 pre#code {
-    background: #000000; /* black */
+    background: #000000; /* black background */
     font-family: Consolas, monospace;
-    color: #ffffff; /* white */
     word-wrap: break-word; /* allows a very long word with no spaces to span multiple lines */
     font-size: 16px;
     width: 50%;

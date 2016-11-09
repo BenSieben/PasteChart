@@ -1,0 +1,15 @@
+//Issue 0023: add xml view
+
+//Who is assigned this task
+Ben
+
+//Description
+Implement XML code generation in ChartController
+to show XML code for chart when user requests it
+This requires a chart.dtd file to define a custom
+XML language
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

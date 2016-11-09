@@ -1,0 +1,13 @@
+//Issue 0024: add json view
+
+//Who is assigned this task
+Ben
+
+//Description
+Implement JSON code generation in ChartController
+to show JSON code for chart when user requests it
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

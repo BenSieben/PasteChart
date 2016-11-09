@@ -56,7 +56,7 @@ class ChartController extends Controller {
         else if (strcmp($chartType, 'json') === 0) { // show json
             // handle json
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
-            $data['code'] = htmlspecialchars($this->getChartJSObjectText($data['data']));
+            $data['code'] = htmlspecialchars($this->generateJSONCode($data['data']));
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'jsonp') === 0) { // show jsonp
@@ -139,6 +139,34 @@ class ChartController extends Controller {
         $fixedFormatEncode = str_replace("]", "}", $fixedFormatEncode);
 
         return $fixedFormatEncode;
+    }
+
+    /**
+     * Creates JSON code for the $dataString
+     * @param $dataString string data convert to JSON
+     * @return string JSON code for $dataString
+     */
+    private function generateJSONCode($dataString) {
+        // split data back into array form by exploding on newline
+        $arr = explode("\n", $dataString);
+
+        // pull data from array of lines into new obj array (doing better formatting)
+        $obj = [];
+
+        // add all rows of data to the obj array (one element per row)
+        foreach($arr as $row) {
+            $rowArr = explode(",", $row);
+            $valuesArr = []; // will hold all values in the row in an array
+            for($i = 1; $i < count($rowArr); $i++) {
+                array_push($valuesArr, doubleval($rowArr[$i]));
+            }
+            $objEntry = array($rowArr[0] => $valuesArr); // push all values to the label
+            array_push($obj, $objEntry);
+        }
+        // json_encode the new obj array
+        $encode = json_encode($obj, JSON_PRETTY_PRINT);
+
+        return "{\"data\":" . $encode . "}"; // name the array "data"
     }
 }
 ?>

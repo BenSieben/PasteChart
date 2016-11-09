@@ -7,6 +7,6 @@ Ben
 Utilize chart.js in the chart view (when it is needed)
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []
 

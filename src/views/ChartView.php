@@ -49,8 +49,7 @@ class ChartView extends View {
             }
             else { // otherwise, we do not use chart.js
         ?>
-    <p>Chart title: <?= $data['title'] ?></p>
-    <p>Chart data: <?= $data['data'] ?></p>
+    <div id="code"><?= $data['code'] ?></div>
 <?php
             }
         ?>

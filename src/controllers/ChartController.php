@@ -24,7 +24,7 @@ class ChartController extends Controller {
      */
     public function show($chartType, $dbEntryHash, $javascript_callback = null) {
         if(strcmp($chartType, 'LineGraph') === 0) { // show LineGraph
-            //TODO handle LineGraph
+            // handle LineGraph
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
             if(!isset($data['noDBEntry'])) {
                 $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
@@ -32,7 +32,7 @@ class ChartController extends Controller {
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'PointGraph') === 0) { // show PointGraph
-            //TODO handle PointGraph
+            // handle PointGraph
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
             if(!isset($data['noDBEntry'])) {
                 $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
@@ -40,7 +40,7 @@ class ChartController extends Controller {
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'Histogram') === 0) { // show Histogram
-            //TODO handle Histogram
+            // handle Histogram
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
             if(!isset($data['noDBEntry'])) {
                 $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
@@ -48,18 +48,21 @@ class ChartController extends Controller {
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'xml') === 0) { // show xml
-            //TODO handle xml
+            // handle xml
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
+            $data['code'] = "XML IN PROGRESS!"; // TODO develop XML code format
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'json') === 0) { // show json
-            //TODO handle json
+            // handle json
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
+            $data['code'] = $this->getChartJSObjectText($data['data']);
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'jsonp') === 0) { // show jsonp
-            //TODO handle jsonp
+            // handle jsonp
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
+            $data['code'] = "JSONP IN PROGRESS!"; // TODO develop JSONP code format
             $this->launchView($data);
         }
         else { // bad chartType given

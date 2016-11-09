@@ -27,7 +27,7 @@ class FormController extends Controller {
             $data = preg_replace("/\n+/", "\n", $data); // remove extra newlines between lines
             $md5 = hash("md5", $data);
 
-            // TODO do actual checking of data instead of jumping straight to chart view
+            // verify all the chart data before inserting form data into database
             $this->verifyChartForm($title, $data);
 
             // insert data into database
@@ -67,10 +67,6 @@ class FormController extends Controller {
      * @param $data String data of chart to submit to database
      */
     private function verifyChartForm($title, $data){
-        //TODO be sure to use at least 2 SimpleTest unit tests
-        // 1 to check number of items in tuple
-        // 2 to check number of lines and line length constraints
-
         // this will keep track of all errors found during the check, and will be used
         //   later to determine if the form should be rejected or not
         $errors = [];

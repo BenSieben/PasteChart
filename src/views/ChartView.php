@@ -49,7 +49,7 @@ class ChartView extends View {
             }
             else { // otherwise, we do not use chart.js
         ?>
-    <div id="code"><?= $data['code'] ?></div>
+    <pre id="code"><?= $data['code'] ?></pre>
 <?php
             }
         ?>

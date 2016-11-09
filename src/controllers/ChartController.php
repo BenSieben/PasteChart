@@ -56,7 +56,7 @@ class ChartController extends Controller {
         else if (strcmp($chartType, 'json') === 0) { // show json
             // handle json
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
-            $data['code'] = $this->getChartJSObjectText($data['data']);
+            $data['code'] = htmlspecialchars($this->getChartJSObjectText($data['data']));
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'jsonp') === 0) { // show jsonp
@@ -130,7 +130,7 @@ class ChartController extends Controller {
             array_push($obj, $objEntry);
         }
         // json_encode the new obj array
-        $encode = json_encode($obj);
+        $encode = json_encode($obj, JSON_PRETTY_PRINT);
 
         // fix formatting of json_encode to exactly match what chart.js expects
         $fixedFormatEncode = str_replace("{", "", $encode);

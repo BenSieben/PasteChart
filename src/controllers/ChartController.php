@@ -50,7 +50,7 @@ class ChartController extends Controller {
         else if (strcmp($chartType, 'xml') === 0) { // show xml
             // handle xml
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
-            $data['code'] = "XML IN PROGRESS!"; // TODO develop XML code format
+            $data['code'] = htmlspecialchars($this->generateXMLCode($data['title'], $data['data'])); // TODO develop XML code format
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'json') === 0) { // show json
@@ -160,6 +160,45 @@ class ChartController extends Controller {
         $fixedFormatEncode = str_replace("]", "}", $fixedFormatEncode);
 
         return $fixedFormatEncode;
+    }
+
+    /**
+     * Creates XML code for the chart "object", which has
+     * a title and chart data, according to chart.dtd
+     * @param $title string title to convert to XML
+     * @param $dataString string data to convert to XML
+     * @return string XML code for $dataString
+     */
+    private function generateXMLCode($title, $dataString) {
+        // split data back into array form by exploding on newline
+        $arr = explode("\n", $dataString);
+
+        // the string which keeps getting XML code added to it
+        $xml = "";
+
+        // first set up the chart amd data elements at the top of the XML
+        $xml .= "<?xml version=\"1.0\" encoding = \"UTF-8\"?>\n";
+        $xml .= "<!DOCTYPE chart SYSTEM \"chart.dtd\" >\n";
+        $xml .= "<chart title=\"$title\">\n";
+        $xml .= "    <data>\n";
+
+        // now loop through array of data to add rows to the chart data in the XML
+        foreach($arr as $row) {
+            $rowArr = explode(",", $row);
+
+            $xml .= "        <xVal label=\"" . $rowArr[0] . "\">\n"; // add row with given label
+            // place all value(s) in this row
+            for($i = 1; $i < count($rowArr); $i++) {
+                $xml .= "            <yVal>" . $rowArr[$i] . "</yVal>\n";
+            }
+            $xml .= "        </xVal>\n";
+        }
+
+        // close chart and data elements
+        $xml .= "    </data>\n";
+        $xml .= "</chart>\n";
+
+        return $xml;
     }
 
     /**

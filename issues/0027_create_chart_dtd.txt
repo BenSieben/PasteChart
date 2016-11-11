@@ -9,6 +9,6 @@ for which the chart view will show the XML version
 of the chart data
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []
 

@@ -1,2 +1,8 @@
 <?xml version = "1.0" encoding = "utf-8" ?>
-<!ELEMENT chart (
+<!-- chart.dtd  -->
+<!ELEMENT chart (data) >
+<!ATTLIST chart title CDATA #REQUIRED >
+<!ELEMENT data (xVal+) >
+<!ELEMENT xVal (yVal+) >
+<!ATTLIST xVal label CDATA #REQUIRED >
+<!ELEMENT yVal (#PCDATA) >

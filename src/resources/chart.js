@@ -27,7 +27,7 @@ function Chart(chart_id, data)
         'axes_color' : 'rgb(128,128,128)', // color of the x and y axes lines
         'caption' : '', // caption text appears at bottom
         'caption_style' : 'font-size: 14pt; text-align: center;', // CSS styles to apply to caption text
-        'data_color' : 'rgb(0,0,255)', //color used to draw grah
+        'data_color' : 'rgb(0,0,255)', //color used to draw graph
         'height' : 500, //height of area to draw into in pixels
         'line_width' : 1, // width of line in line graph
         'x_padding' : 30, //x-distance left side of canvas tag to y-axis
@@ -38,7 +38,7 @@ function Chart(chart_id, data)
         'tick_font_size' : 10, //size of font to use when labeling ticks
         'title' : '', // title text appears at top
         'title_style' : 'font-size:24pt; text-align: center;', // CSS styles to apply to title text
-        'type' : 'LineGraph', // currently, can be either a LineGraph or PointGraph
+        'type' : 'LineGraph', // can be LineGraph, PointGraph, or Histogram
         'width' : 500 //width of area to draw into in pixels
     };
     for (var property_key in property_defaults) {
@@ -203,5 +203,13 @@ function Chart(chart_id, data)
             x += dx;
         }
         c.stroke();
+    };
+    /**
+     * Draws a chart consisting of x-y plots of bars in data
+     */
+    p.drawHistogram = function()
+    {
+        self.initMinMaxRange();
+        self.renderAxes();
     }
 }

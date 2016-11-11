@@ -203,6 +203,35 @@ class ChartDataTester extends \UnitTestCase {
     }
 
     /**
+     * This unit test checks that each row of data
+     * has a unique label, as this is required for chart.js
+     * to render correctly
+     * Adds the following to the results array:
+     *      ['lines_with_non_unique_label']: array of line(s) that use a non-unique label
+     */
+    public function testXLabels() {
+        // results array will be updated with this during the test
+        $this->results['lines_with_non_unique_label'] = [];
+
+        $split_lines = explode("\n", $this->data);
+        $all_unique_labels = true;
+        $found_labels = []; // this will accumulate each new label
+        for($i = 0; $i < count($split_lines); $i++) {
+            $line = $split_lines[$i];
+            $label = explode(",", $line)[0];
+            if(in_array($label, $found_labels)) { // if true, label is a repeated label
+                $all_unique_labels = false;
+                // also add this line to the results array of lines with non-unique labeling
+                array_push($this->results['lines_with_non_unique_label'], $i);
+            }
+            else { // label is not a repeated label, so we must add it to found_labels
+                array_push($found_labels, $label);
+            }
+        }
+        $this->assertTrue($all_unique_labels, "Not all lines have unique labels!");
+    }
+
+    /**
      * Returns the results that were obtained from all the tests
      * Use this after calling the run function to see specifically
      * which tests failed in code. For each key, an array of
@@ -227,7 +256,8 @@ class ChartDataTester extends \UnitTestCase {
             'lines_with_too_few_values',
             'lines_with_too_many_characters',
             'lines_with_non_numeric_values',
-            'lines_with_invalid_labeling'
+            'lines_with_invalid_labeling',
+            'lines_with_non_unique_label'
             ];
     }
 

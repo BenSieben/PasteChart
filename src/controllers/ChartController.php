@@ -50,7 +50,7 @@ class ChartController extends Controller {
         else if (strcmp($chartType, 'xml') === 0) { // show xml
             // handle xml
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
-            $data['code'] = htmlspecialchars($this->generateXMLCode($data['title'], $data['data'])); // TODO develop XML code format
+            $data['code'] = htmlspecialchars($this->generateXMLCode($data['title'], $data['data']));
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'json') === 0) { // show json

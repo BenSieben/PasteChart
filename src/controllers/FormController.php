@@ -149,6 +149,8 @@ class FormController extends Controller {
                 return "Error: lines with non-numeric values have been detected. These lines have been removed<br /><br />";
             case 'lines_with_invalid_labeling':
                 return "Error: lines missing a label have been detected. These lines have been removed<br /><br />";
+            case 'lines_with_non_unique_label':
+                return "Error: lines with repeated label have been detected. These lines have been removed<br /><br />";
             default:
                 return "";
         }

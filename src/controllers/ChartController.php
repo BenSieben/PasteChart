@@ -152,7 +152,7 @@ class ChartController extends Controller {
                     array_push($valuesArr, null);
                 }
                 else {
-                    array_push($valuesArr, doubleval($rowArr[1]));
+                    array_push($valuesArr, doubleval($rowArr[$i]));
                 }
             }
             $chartData->$rowArr[0] = $valuesArr;

@@ -8,8 +8,8 @@
  * graph.draw();
  *
  * @param String chart_id id of tag that the chart will be drawn into
- * @param Object data a sequence {x_1:y_1, ... x_1,y_n} points to plot
- *    x_i's can be arbitrary labels, y_i's are assumes to be floats
+ * @param Array<Array> data array of sequences [{x_1:[y_1, y_2, ...]}, ... {x_n:[y_1, y_2, ...]}] points to plot
+ *    x_i's can be arbitrary labels, y_i's are assumed to be floats
  * @param Object (optional) properties override values for any of the
  *      properties listed in the property_defaults variable below
  */
@@ -62,12 +62,18 @@ function Chart(chart_id, data)
     canvas.width = this.width;
     canvas.height = this.height;
     this.data = data;
+    this.data_keys = Object.keys(data); // all labels in the data
+    this.num_graphs =  data[this.data_keys[0]].length; // number of graph(s) that will be drawn based on given data
     /**
      * Main function used to draw the graph type selected
      */
     p.draw = function()
     {
-        self['draw' + self.type]();
+        // to handle k-tuples instead of 2-tuples, we must draw each data
+        //   set, one at a time
+        for(var i = 0; i < self.num_graphs; i++) {
+            self['draw' + self.type](i); // i = index of each values array to pull data from when graphing this time
+        }
     };
     /**
      * Used to store in fields the min and max y values as well as the start
@@ -80,17 +86,21 @@ function Chart(chart_id, data)
         self.start;
         self.end;
         var key;
-        for (key in data) {
-            if (self.min_value === null) {
-                self.min_value = data[key];
-                self.max_value = data[key];
-                self.start = key;
-            }
-            if (data[key] < self.min_value) {
-                self.min_value = data[key];
-            }
-            if (data[key] > self.max_value) {
-                self.max_value = data[key];
+        for (key in data) { // for each label..
+            for(var i = 0; i < self.num_graphs; i++) { // for each value in each label...
+                if(data[key][i] !== null) { // data[key][i] is null when we have a gap in information, so don't check those for max  min
+                    if (self.min_value === null) {
+                        self.min_value = data[key][i];
+                        self.max_value = data[key][i];
+                        self.start = key;
+                    }
+                    if (data[key][i] < self.min_value) {
+                        self.min_value = data[key][i];
+                    }
+                    if (data[key][i] > self.max_value) {
+                        self.max_value = data[key][i];
+                    }
+                }
             }
         }
         self.end = key;
@@ -147,7 +157,7 @@ function Chart(chart_id, data)
         var dx = (self.width - 2 * self.x_padding) /
             (Object.keys(data).length - 1);
         var x = self.x_padding;
-        for (key in data) {
+        for (var key in data) {
             c.font = self.tick_font_size + "px serif";
             c.fillText(key, x - self.tick_font_size/2 * (key.length - 0.5),
                 self.height - self.y_padding +  self.tick_length +
@@ -161,11 +171,14 @@ function Chart(chart_id, data)
     };
     /**
      * Draws a chart consisting of just x-y plots of points in data.
+     * dataIndex = which index of data to get information from
      */
-    p.drawPointGraph = function()
+    p.drawPointGraph = function(dataIndex)
     {
-        self.initMinMaxRange();
-        self.renderAxes();
+        if(dataIndex === 0) { // only find range / draw axes for first set of data
+            self.initMinMaxRange();
+            self.renderAxes();
+        }
         var dx = (self.width - 2*self.x_padding) /
             (Object.keys(data).length - 1);
         var c = context;
@@ -174,9 +187,9 @@ function Chart(chart_id, data)
         c.fillStyle = self.data_color;
         var height = self.height - self.y_padding - self.tick_length;
         var x = self.x_padding;
-        for (key in data) {
-            y = self.tick_length + height *
-                (1 - (data[key] - self.min_value)/self.range);
+        for (var key in data) {
+            var y = self.tick_length + height *
+                (1 - (data[key][dataIndex] - self.min_value)/self.range);
             self.plotPoint(x, y);
             x += dx;
         }
@@ -184,10 +197,11 @@ function Chart(chart_id, data)
     /**
      * Draws a chart consisting of x-y plots of points in data, each adjacent
      * point pairs connected by a line segment
+     * dataIndex = which index of data to get information from
      */
-    p.drawLineGraph = function()
+    p.drawLineGraph = function(dataIndex)
     {
-        self.drawPointGraph();
+        self.drawPointGraph(dataIndex);
         var c = context;
         c.beginPath();
         var x = self.x_padding;
@@ -196,9 +210,9 @@ function Chart(chart_id, data)
         var height = self.height - self.y_padding  - self.tick_length;
         c.moveTo(x, self.tick_length + height * (1 -
             (data[self.start] - self.min_value)/self.range));
-        for (key in data) {
-            y = self.tick_length + height *
-                (1 - (data[key] - self.min_value)/self.range);
+        for (var key in data) {
+            var y = self.tick_length + height *
+                (1 - (data[key][dataIndex] - self.min_value)/self.range);
             c.lineTo(x, y);
             x += dx;
         }
@@ -206,23 +220,26 @@ function Chart(chart_id, data)
     };
     /**
      * Draws a chart consisting of x-y plots of bars in data
+     * dataIndex = which index of data to get information from
      */
-    p.drawHistogram = function()
+    p.drawHistogram = function(dataIndex)
     {
-        self.initMinMaxRange();
-        // the min value is lowered because this makes sure all y-values have at least a little bit of height
-        self.min_value -= (self.range * 0.1);
-        self.range = self.max_value - self.min_value;
-        self.renderAxes();
+        if(dataIndex === 0) { // only find range / draw axes for first set of data
+            self.initMinMaxRange();
+            // the min value is lowered because this makes sure all filled y-values have at least a little bit of height
+            self.min_value -= (self.range * 0.1);
+            self.range = self.max_value - self.min_value;
+            self.renderAxes();
+        }
         var c = context;
         c.fillStyle = self.data_color;
         c.beginPath();
         var x = self.x_padding;
         var dx = (self.width - 2*self.x_padding) / (Object.keys(data).length - 1);
         var height = self.height - self.y_padding;
-        for(key in data) {
-            y = self.tick_length + height *
-                (1 - (data[key] - self.min_value)/self.range);
+        for(var key in data) {
+            var y = self.tick_length + height *
+                (1 - (data[key][dataIndex] - self.min_value)/self.range);
             c.fillRect(x, y, dx / 2, Math.max((height - y), 0)); // math.max because one bar will always have 0 length
             x += dx;
         }

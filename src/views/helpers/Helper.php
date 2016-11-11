@@ -1,9 +1,9 @@
 <?php
-namespace cs174\hw3\views\helpers;
+namespace cs174\hw4\views\helpers;
 
 /**
  * Class Helper
- * @package cs174\hw3\views\helpers
+ * @package cs174\hw4\views\helpers
  *
  * Abstract superclass for any Helpers in PasteChart website.
  * Helpers assist View of PasteChart website by

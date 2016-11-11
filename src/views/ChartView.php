@@ -1,5 +1,6 @@
 <?php
 namespace cs174\hw4\views;
+use cs174\hw4\views\elements\ChartLinksElement;
 
 /**
  * Class ChartView
@@ -52,33 +53,9 @@ class ChartView extends View {
     <pre id="code"><?= $data['code'] ?></pre>
 <?php
             }
-        ?>
-    <h3>Share your chart and data at the URLs below:</h3>
-    <p>As a LineGraph:</p>
-    <p><a href="?c=chart&a=show&arg1=LineGraph&arg2=<?= $data['hash'] ?>">
-            <?= $data['baseURL'] ?>/?c=chart&amp;a=show&amp;arg1=LineGraph&amp;arg2=<?= $data['hash'] ?>
-        </a></p>
-    <p>As a PointGraph:</p>
-    <p><a href="?c=chart&a=show&arg1=PointGraph&arg2=<?= $data['hash'] ?>">
-            <?= $data['baseURL'] ?>/?c=chart&amp;a=show&amp;arg1=PointGraph&amp;arg2=<?= $data['hash'] ?>
-        </a></p>
-    <p>As a Histogram:</p>
-    <p><a href="?c=chart&a=show&arg1=Histogram&arg2=<?= $data['hash'] ?>">
-            <?= $data['baseURL'] ?>/?c=chart&amp;a=show&amp;arg1=Histogram&amp;arg2=<?= $data['hash'] ?>
-        </a></p>
-    <p>As XML data:</p>
-    <p><a href="?c=chart&a=show&arg1=xml&arg2=<?= $data['hash'] ?>">
-            <?= $data['baseURL'] ?>/?c=chart&amp;a=show&amp;arg1=xml&amp;arg2=<?= $data['hash'] ?>
-        </a></p>
-    <p>As JSON data:</p>
-    <p><a href="?c=chart&a=show&arg1=json&arg2=<?= $data['hash'] ?>">
-            <?= $data['baseURL'] ?>/?c=chart&amp;a=show&amp;arg1=json&amp;arg2=<?= $data['hash'] ?>
-        </a></p>
-    <p>As JSONP data:</p>
-    <p><a href="?c=chart&a=show&arg1=jsonp&arg2=<?= $data['hash'] ?>&arg3=javascript_callback">
-            <?= $data['baseURL'] ?>/?c=chart&amp;a=show&amp;arg1=jsonp&amp;arg2=<?= $data['hash'] ?>&amp;arg3=javascript_callback
-        </a></p>
-<?php
+            // render the chart links, with all the data provided by chart controller
+            $cle = new ChartLinksElement($this);
+            echo($cle->render($data));
         }?>
     <br/>
     <br/>

@@ -144,22 +144,23 @@ class ChartController extends Controller {
         // pull data from array of lines into new obj array (doing better formatting)
         $obj = [];
 
-        // TODO handle adding multiple values (up to 5) rather than just the first value per line
         foreach($arr as $row) {
             $rowArr = explode(",", $row);
-            $objEntry = array($rowArr[0] => doubleval($rowArr[1]));
-            array_push($obj, $objEntry);
+            $valuesArr = [$rowArr[0]]; // will hold all values in the row in an array
+            for($i = 1; $i < count($rowArr); $i++) {
+                if(strcmp($rowArr[$i], "") === 0) { // if the value is blank, give this entry a special value
+                    array_push($valuesArr, null);
+                }
+                else {
+                    array_push($valuesArr, doubleval($rowArr[1]));
+                }
+            }
+            array_push($obj, $valuesArr);
         }
         // json_encode the new obj array
         $encode = json_encode($obj, JSON_PRETTY_PRINT);
 
-        // fix formatting of json_encode to exactly match what chart.js expects
-        $fixedFormatEncode = str_replace("{", "", $encode);
-        $fixedFormatEncode = str_replace("}", "", $fixedFormatEncode);
-        $fixedFormatEncode = str_replace("[", "{", $fixedFormatEncode);
-        $fixedFormatEncode = str_replace("]", "}", $fixedFormatEncode);
-
-        return $fixedFormatEncode;
+        return $encode;
     }
 
     /**
@@ -220,12 +221,11 @@ class ChartController extends Controller {
         // set up all rows of data to add to the obj array (one element per row)
         foreach($arr as $row) {
             $rowArr = explode(",", $row);
-            $valuesArr = []; // will hold all values in the row in an array
+            $valuesArr = [$rowArr[0]]; // will hold all values in the row in an array
             for($i = 1; $i < count($rowArr); $i++) {
                 array_push($valuesArr, doubleval($rowArr[$i]));
             }
-            $dataEntry = array($rowArr[0] => $valuesArr); // push all values to the label
-            array_push($chartData, $dataEntry); // push array into chartData
+            array_push($chartData, $valuesArr); // push array into chartData
         }
 
         array_push($obj, array("chartData" => $chartData)); // add the chart data to the object, calling it "chartData"

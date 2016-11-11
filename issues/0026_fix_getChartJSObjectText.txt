@@ -1,0 +1,14 @@
+//Issue 0026: fix getChartJSObjectText
+
+//Who is assigned this task
+Ben
+
+//Description
+Fix function getChartJSObjectText in ChartController
+to send all chart data to server instead of just the first
+values in each row
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

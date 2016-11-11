@@ -38,7 +38,6 @@ $mysqli->query("CREATE TABLE Chart(md5 CHAR(32), " .
     "PRIMARY KEY (md5))");
 
 // add sample data to the database
-//   note that there are some lacking entries in the $data; this is to test that we can leave slots empty
 $title = "Rabbit and Wolf Population Over Time Chart";
 $data = "Jan,600,5.4\nFeb,450,5.0\nMar,400,4.8\nApr,380,4.5\nMay,450,4.0\nJun,500,3.8\nJul,400,4.6\nAug,50,10.11";
 $md5 = hash("md5", $data);
@@ -50,7 +49,16 @@ if(!$result) {
 else {
     echo("Successfully added sample tuple data to database!\n");
 }
-
+$title = "Gapped Charts";
+$data = "One,200\nTwo,\nThree,150\nFour,125\nFive,100\nSix,0";
+$md5 = hash("md5", $data);
+$result = $cm->insertChartEntry($md5, $title, $data);
+if(!$result) {
+    echo("Failed to add sample tuple data to database!\n");
+}
+else {
+    echo("Successfully added sample tuple data to database!\n");
+}
 $mysqli->close();
 
 // let user know process has finished successfully

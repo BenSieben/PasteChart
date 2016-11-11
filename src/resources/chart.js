@@ -210,6 +210,22 @@ function Chart(chart_id, data)
     p.drawHistogram = function()
     {
         self.initMinMaxRange();
+        // the min value is lowered because this makes sure all y-values have at least a little bit of height
+        self.min_value -= (self.range * 0.1);
+        self.range = self.max_value - self.min_value;
         self.renderAxes();
+        var c = context;
+        c.fillStyle = self.data_color;
+        c.beginPath();
+        var x = self.x_padding;
+        var dx = (self.width - 2*self.x_padding) / (Object.keys(data).length - 1);
+        var height = self.height - self.y_padding;
+        for(key in data) {
+            y = self.tick_length + height *
+                (1 - (data[key] - self.min_value)/self.range);
+            c.fillRect(x, y, dx / 2, Math.max((height - y), 0)); // math.max because one bar will always have 0 length
+            x += dx;
+        }
+        c.stroke();
     }
 }

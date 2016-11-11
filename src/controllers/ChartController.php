@@ -123,8 +123,8 @@ class ChartController extends Controller {
             $data['baseURL'] . "/?c=chart&amp;a=show&amp;arg1=Histogram&amp;arg2=" . $data['hash']];
         $data['chartLink'][3] = ["As XML data:", "?c=chart&a=show&arg1=xml&arg2=" . $data['hash'],
             $data['baseURL'] . "/?c=chart&amp;a=show&amp;arg1=xml&amp;arg2=" . $data['hash']];
-        $data['chartLink'][4] = ["As JSON data:", "?c=chart&a=show&arg1=LineGraph&arg2=" . $data['hash'],
-            $data['baseURL'] . "/?c=chart&amp;a=show&amp;arg1=LineGraph&amp;arg2=" . $data['hash']];
+        $data['chartLink'][4] = ["As JSON data:", "?c=chart&a=show&arg1=json&arg2=" . $data['hash'],
+            $data['baseURL'] . "/?c=chart&amp;a=show&amp;arg1=json&amp;arg2=" . $data['hash']];
         $data['chartLink'][5] = ["As JSONP data:", "?c=chart&a=show&arg1=jsonp&arg2=" . $data['hash'] . "&arg3=javascript_callback",
             $data['baseURL'] . "/?c=chart&amp;a=show&amp;arg1=jsonp&amp;arg2=" . $data['hash'] . "&amp;arg3=javascript_callback"];
 

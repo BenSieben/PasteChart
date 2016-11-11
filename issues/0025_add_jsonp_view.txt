@@ -6,10 +6,9 @@ Ben
 //Description
 Implement JSONP code generation in ChartController
 to show JSONP code for chart when user requests it
-This calls a function on JSON data and displays
-the result of calling the function as the code
+This prints calling a function on the JSON data
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []
 

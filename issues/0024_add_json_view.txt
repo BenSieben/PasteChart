@@ -8,6 +8,6 @@ Implement JSON code generation in ChartController
 to show JSON code for chart when user requests it
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []
 

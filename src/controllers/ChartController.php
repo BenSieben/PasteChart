@@ -61,8 +61,11 @@ class ChartController extends Controller {
         }
         else if (strcmp($chartType, 'jsonp') === 0) { // show jsonp
             // handle jsonp
+            //   for jsonp, the user specifies a function (as $javascript_callback) and all we do is show
+            //   this callback using the JSON of the chart data as its argument
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
-            $data['code'] = "JSONP IN PROGRESS!"; // TODO develop JSONP code format
+            $jsonCode = $this->generateJSONCode($data['title'], $data['data']);
+            $data['code'] = htmlspecialchars($javascript_callback . "(" . $jsonCode . ");");
             $this->launchView($data);
         }
         else { // bad chartType given

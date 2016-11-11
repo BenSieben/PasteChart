@@ -1,0 +1,14 @@
+//Issue 0027: create chart.dtd
+
+//Who is assigned this task
+Ben
+
+//Description
+Create a chart.dtd file to write an XML language
+for which the chart view will show the XML version
+of the chart data
+
+//Resolved or not?
+RESOLVED: []
+NOT RESOLVED: [X]
+

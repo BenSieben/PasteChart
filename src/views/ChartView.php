@@ -41,7 +41,6 @@ class ChartView extends View {
     <div id="chart"></div>
     <script type="text/javascript">
         graph = new Chart('chart',
-            <!-- {'Jan':7, 'Feb':20, 'Dec':5}, -->
             <?= $data['chartDataJSObjectText'] ?>,
             {'title': '<?= $data['title'] ?>', 'type': '<?= $data['chartType'] ?>'});
         graph.draw();

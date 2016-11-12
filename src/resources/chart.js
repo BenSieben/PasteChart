@@ -27,7 +27,8 @@ function Chart(chart_id, data)
         'axes_color' : 'rgb(128,128,128)', // color of the x and y axes lines
         'caption' : '', // caption text appears at bottom
         'caption_style' : 'font-size: 14pt; text-align: center;', // CSS styles to apply to caption text
-        'data_color' : 'rgb(0,0,255)', //color used to draw graph
+        //colors used to draw graph (different for each value set)
+        'data_colors' : ['rgb(0,0,255)', 'rgb(51,204,51)', 'rgb(255,0,0)', 'rgb(204,0,255)', 'rgb(153,102,51)'],
         'height' : 500, //height of area to draw into in pixels
         'line_width' : 1, // width of line in line graph
         'x_padding' : 30, //x-distance left side of canvas tag to y-axis
@@ -39,7 +40,7 @@ function Chart(chart_id, data)
         'title' : '', // title text appears at top
         'title_style' : 'font-size:24pt; text-align: center;', // CSS styles to apply to title text
         'type' : 'LineGraph', // can be LineGraph, PointGraph, or Histogram
-        'width' : 500 //width of area to draw into in pixels
+        'width' : 700 //width of area to draw into in pixels
     };
     for (var property_key in property_defaults) {
         if (typeof properties[property_key] !== 'undefined') {
@@ -183,14 +184,16 @@ function Chart(chart_id, data)
             (Object.keys(data).length - 1);
         var c = context;
         c.lineWidth = self.line_width;
-        c.strokeStyle = self.data_color;
-        c.fillStyle = self.data_color;
+        c.strokeStyle = self.data_colors[dataIndex];
+        c.fillStyle = self.data_colors[dataIndex];
         var height = self.height - self.y_padding - self.tick_length;
         var x = self.x_padding;
         for (var key in data) {
-            var y = self.tick_length + height *
-                (1 - (data[key][dataIndex] - self.min_value)/self.range);
-            self.plotPoint(x, y);
+            if(data[key][dataIndex] !== null) { // do not draw null dots (places that did not have value specified)
+                var y = self.tick_length + height *
+                    (1 - (data[key][dataIndex] - self.min_value)/self.range);
+                self.plotPoint(x, y);
+            }
             x += dx;
         }
     };
@@ -211,9 +214,11 @@ function Chart(chart_id, data)
         c.moveTo(x, self.tick_length + height * (1 -
             (data[self.start] - self.min_value)/self.range));
         for (var key in data) {
-            var y = self.tick_length + height *
-                (1 - (data[key][dataIndex] - self.min_value)/self.range);
-            c.lineTo(x, y);
+            if(data[key][dataIndex] !== null) { // do not draw null lines (places that did not have value specified)
+                var y = self.tick_length + height *
+                    (1 - (data[key][dataIndex] - self.min_value) / self.range);
+                c.lineTo(x, y);
+            }
             x += dx;
         }
         c.stroke();
@@ -232,15 +237,18 @@ function Chart(chart_id, data)
             self.renderAxes();
         }
         var c = context;
-        c.fillStyle = self.data_color;
+        c.fillStyle = self.data_colors[dataIndex];
         c.beginPath();
-        var x = self.x_padding;
         var dx = (self.width - 2*self.x_padding) / (Object.keys(data).length - 1);
+        var barWidth = dx /5 / self.num_graphs; // how wide each bar should be depends on number of drawn graphs
+        var x = self.x_padding + (barWidth * dataIndex);
         var height = self.height - self.y_padding;
         for(var key in data) {
-            var y = self.tick_length + height *
-                (1 - (data[key][dataIndex] - self.min_value)/self.range);
-            c.fillRect(x, y, dx / 2, Math.max((height - y), 0)); // math.max because one bar will always have 0 length
+            if(data[key][dataIndex] !== null) {  // do not draw null bars (bars that did not have value specified)
+                var y = self.tick_length + height *
+                    (1 - (data[key][dataIndex] - self.min_value)/self.range);
+                c.fillRect(x, y, barWidth, Math.max((height - y), 0)); // math.max because one bar will always have 0 length
+            }
             x += dx;
         }
         c.stroke();

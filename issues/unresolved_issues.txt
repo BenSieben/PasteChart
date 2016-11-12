@@ -1,4 +1,2 @@
 // List of currently unresolved issues
 
-0019
-0026

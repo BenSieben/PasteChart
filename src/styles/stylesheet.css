@@ -46,7 +46,7 @@ for chart id div (where graphs are drawn in the chart view)
 */
 div#chart {
     background: #FFFFFF; /* white */
-    width: 600px;
+    width: 800px;
     margin-left: auto;
     margin-right: auto;
 }

@@ -9,6 +9,6 @@ to send all chart data to server instead of just the first
 values in each row
 
 //Resolved or not?
-RESOLVED: []
-NOT RESOLVED: [X]
+RESOLVED: [X]
+NOT RESOLVED: []
 

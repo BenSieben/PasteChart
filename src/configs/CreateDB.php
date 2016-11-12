@@ -50,7 +50,7 @@ else {
     echo("Successfully added sample tuple data to database!\n");
 }
 $title = "Gapped Charts";
-$data = "One,200\nTwo,\nThree,150\nFour,125\nFive,100\nSix,0";
+$data = "One,0,100,,100,0\nTwo,,20,30,70,30\nThree,93,30,,60,50\nFour,30,33,25,,20\nFive,100,,80,40,60";
 $md5 = hash("md5", $data);
 $result = $cm->insertChartEntry($md5, $title, $data);
 if(!$result) {

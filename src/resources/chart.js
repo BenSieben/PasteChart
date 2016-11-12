@@ -160,9 +160,19 @@ function Chart(chart_id, data)
         var x = self.x_padding;
         for (var key in data) {
             c.font = self.tick_font_size + "px serif";
-            c.fillText(key, x - self.tick_font_size/2 * (key.length - 0.5),
-                self.height - self.y_padding +  self.tick_length +
-                self.tick_font_size, self.tick_font_size * (key.length - 0.5));
+            if(key !== "") { // do not draw text if empty string key (this is special histogram key)
+                if(self.type === 'Histogram') { // draw x values in slightly different location for histograms
+                    c.fillText(key, x - self.tick_font_size/2 * (key.length - 0.5) +
+                        ((self.width - 2*self.x_padding) / (Object.keys(data).length - 1) / 2),
+                        self.height - self.y_padding +  self.tick_length +
+                        self.tick_font_size, self.tick_font_size * (key.length - 0.5));
+                }
+                else {
+                    c.fillText(key, x - self.tick_font_size/2 * (key.length - 0.5),
+                        self.height - self.y_padding +  self.tick_length +
+                        self.tick_font_size, self.tick_font_size * (key.length - 0.5));
+                }
+            }
             c.beginPath();
             c.moveTo(x, self.height - self.y_padding + self.tick_length);
             c.lineTo(x, self.height - self.y_padding);
@@ -229,6 +239,12 @@ function Chart(chart_id, data)
      */
     p.drawHistogram = function(dataIndex)
     {
+        // when drawing histogram, add extra property to data to give space for all drawn elements
+        data[""] = [];
+        for(var i = 0;  i < data[self.data_keys[0]].length; i++) { // all of this new label's y-values are null
+            data[""].push(null);
+        }
+        self.data_keys = Object.keys(data); // reset all labels in the data
         if(dataIndex === 0) { // only find range / draw axes for first set of data
             self.initMinMaxRange();
             // the min value is lowered because this makes sure all filled y-values have at least a little bit of height
@@ -240,7 +256,7 @@ function Chart(chart_id, data)
         c.fillStyle = self.data_colors[dataIndex];
         c.beginPath();
         var dx = (self.width - 2*self.x_padding) / (Object.keys(data).length - 1);
-        var barWidth = dx /5 / self.num_graphs; // how wide each bar should be depends on number of drawn graphs
+        var barWidth = dx / self.num_graphs; // how wide each bar should be depends on number of drawn graphs
         var x = self.x_padding + (barWidth * dataIndex);
         var height = self.height - self.y_padding;
         for(var key in data) {

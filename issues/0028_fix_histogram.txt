@@ -1,0 +1,14 @@
+//Issue 0028: fix histogram
+
+//Who is assigned this task
+Ben
+
+//Description
+Under certain circumstances, the chart data
+will go off the canvas, which is bad. Fix computation
+details to make sure this cannot happen
+
+//Resolved or not?
+RESOLVED: [X]
+NOT RESOLVED: []
+

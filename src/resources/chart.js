@@ -253,7 +253,9 @@ function Chart(chart_id, data)
             self.renderAxes();
         }
         var c = context;
-        c.fillStyle = self.data_colors[dataIndex];
+        c.fillStyle = self.data_colors[dataIndex]; // fill in color depends on dataIndex
+        c.strokeStyle = self.axes_color; // all bars get outlined in the same color as axes
+        c.lineWidth = self.line_width; // set up width for drawing outlines (for when it is not already set)
         c.beginPath();
         var dx = (self.width - 2*self.x_padding) / (Object.keys(data).length - 1);
         var barWidth = dx / self.num_graphs; // how wide each bar should be depends on number of drawn graphs
@@ -263,7 +265,8 @@ function Chart(chart_id, data)
             if(data[key][dataIndex] !== null) {  // do not draw null bars (bars that did not have value specified)
                 var y = self.tick_length + height *
                     (1 - (data[key][dataIndex] - self.min_value)/self.range);
-                c.fillRect(x, y, barWidth, Math.max((height - y), 0)); // math.max because one bar will always have 0 length
+                c.fillRect(x, y, barWidth, Math.max((height - y), 0)); // math.max because at least one bar will always have 0 length
+                c.rect(x, y, barWidth, Math.max((height - y), 0)); // draw outline for bar
             }
             x += dx;
         }

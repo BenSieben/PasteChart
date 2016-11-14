@@ -24,7 +24,6 @@ class ChartController extends Controller {
      */
     public function show($chartType, $dbEntryHash, $javascript_callback = null) {
         if(strcmp($chartType, 'LineGraph') === 0) { // show LineGraph
-            // handle LineGraph
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
             if(!isset($data['noDBEntry'])) {
                 $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
@@ -32,7 +31,6 @@ class ChartController extends Controller {
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'PointGraph') === 0) { // show PointGraph
-            // handle PointGraph
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
             if(!isset($data['noDBEntry'])) {
                 $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
@@ -40,7 +38,6 @@ class ChartController extends Controller {
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'Histogram') === 0) { // show Histogram
-            // handle Histogram
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
             if(!isset($data['noDBEntry'])) {
                 $data['chartDataJSObjectText'] = $this->getChartJSObjectText($data['data']);
@@ -48,27 +45,21 @@ class ChartController extends Controller {
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'xml') === 0) { // show xml
-            // handle xml
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
             $data['code'] = htmlspecialchars($this->generateXMLCode($data['title'], $data['data']));
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'json') === 0) { // show json
-            // handle json
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
             $data['code'] = htmlspecialchars($this->generateJSONCode($data['title'], $data['data']));
             $this->launchView($data);
         }
         else if (strcmp($chartType, 'jsonp') === 0) { // show jsonp
-            // handle jsonp
-            //   for jsonp, the user specifies a function (as $javascript_callback) and all we do is show
-            //   this callback using the JSON of the chart data as its argument
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
             $data['code'] = htmlspecialchars($this->generateJSONPCode($data['title'], $data['data'], $javascript_callback));
             $this->launchView($data);
         }
-        else { // bad chartType given
-            // send back to landing page when given bad chartType
+        else { // bad chartType given (send back to landing page)
             header("Location: " . Config::BASE_URL . "/?c=landing");
             exit();
         }
@@ -237,6 +228,7 @@ class ChartController extends Controller {
     /**
      * Creates JSONP code for the chart "object", which has
      * a title and chart data by calling a callback function
+     * on the chart "object"
      * @param $title string title to convert to JSON
      * @param $dataString string data to convert to JSON
      * @param $callback string callback function that is being called on JSON object

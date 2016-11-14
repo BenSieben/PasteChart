@@ -32,13 +32,13 @@ class LandingView extends View {
     <form name="chartForm" action="?c=form" onsubmit="return validateForm()" method="post">
         <label>Chart Title
             <br />
-        <input type="text" name="title" value="<?= $data['title'] ?>" />
+        <input type="text" id="chartTitle" name="title" value="<?= $data['title'] ?>" />
         </label>
         <br />
         <br />
         <label>Chart Data
             <br />
-            <textarea name="chartData" rows="25" cols="80" placeholder="<?= $data['dataPlaceholder'] ?>"><?= $data['chartData'] ?></textarea>
+            <textarea id="chartData" name="chartData" rows="25" cols="80" placeholder="<?= $data['dataPlaceholder'] ?>"><?= $data['chartData'] ?></textarea>
         </label>
         <br />
         <br />

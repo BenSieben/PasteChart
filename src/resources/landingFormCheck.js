@@ -4,7 +4,7 @@
  */
 function validateForm() {
     // first check: title needs to have at least one character
-    var t = document.forms["chartForm"]["title"].value;
+    var t = document.getElementById("chartTitle").value;
     if(t == null || t.trim() == "") {
         document.getElementById('clientErrorMessage').innerHTML =
             '<p>Error: please enter title with at least 1 non-whitespace character</p>';
@@ -26,7 +26,7 @@ function validateForm() {
     }
 
     // third check: make sure data is not completely empty (and has at least one comma)
-    var d = document.forms["chartForm"]["chartData"].value;
+    var d = document.getElementById("chartData").value;
     if(d == null || d.trim() == "" || d.indexOf(",") === -1 || d.trim().length < 3) {
         document.getElementById('clientErrorMessage').innerHTML =
             '<p>Error: please enter valid chart data with at least one row to graph</p>';

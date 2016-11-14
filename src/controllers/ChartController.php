@@ -145,7 +145,7 @@ class ChartController extends Controller {
             $valuesArr = []; // will hold all values in the row in an array
             for($i = 1; $i < count($rowArr); $i++) {
                 if(strcmp($rowArr[$i], "") === 0) { // if the value is blank, give this entry a special value
-                    array_push($valuesArr, null);
+                    array_push($valuesArr, "");
                 }
                 else {
                     array_push($valuesArr, doubleval($rowArr[$i]));
@@ -174,7 +174,7 @@ class ChartController extends Controller {
         $xml = "";
 
         // first set up the chart amd data elements at the top of the XML
-        $xml .= "<?xml version=\"1.0\" encoding = \"UTF-8\"?>\n";
+        $xml .= "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
         $xml .= "<!DOCTYPE chart SYSTEM \"chart.dtd\" >\n";
         $xml .= "<chart title=\"$title\">\n";
         $xml .= "    <data>\n";
@@ -217,7 +217,12 @@ class ChartController extends Controller {
             $rowArr = explode(",", $row);
             $valuesArr = []; // will hold all values in the row in an array
             for($i = 1; $i < count($rowArr); $i++) {
-                array_push($valuesArr, doubleval($rowArr[$i]));
+                if(strcmp($rowArr[$i], "") === 0) { // if the value is blank, give this entry a special value
+                    array_push($valuesArr, "");
+                }
+                else {
+                    array_push($valuesArr, doubleval($rowArr[$i]));
+                }
             }
             $chartData->$rowArr[0] = $valuesArr; // add this label:[values] value into dataEntries object
         }

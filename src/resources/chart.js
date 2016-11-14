@@ -89,7 +89,7 @@ function Chart(chart_id, data)
         var key;
         for (key in data) { // for each label..
             for(var i = 0; i < self.num_graphs; i++) { // for each value in each label...
-                if(data[key][i] !== null) { // data[key][i] is null when we have a gap in information, so don't check those for max  min
+                if(data[key][i] !== "") { // data[key][i] is empty string when we have a gap in information, so don't check those for max  min
                     if (self.min_value === null) {
                         self.min_value = data[key][i];
                         self.max_value = data[key][i];
@@ -161,7 +161,7 @@ function Chart(chart_id, data)
         for (var key in data) {
             c.font = self.tick_font_size + "px serif";
             if(key !== "") { // do not draw text if empty string key (this is special histogram key)
-                if(self.type === 'Histogram') { // draw x values in slightly different location for histograms
+                if(self.type === 'Histogram') { // draw x value labels in slightly different location for histograms
                     c.fillText(key, x - self.tick_font_size/2 * (key.length - 0.5) +
                         ((self.width - 2*self.x_padding) / (Object.keys(data).length - 1) / 2),
                         self.height - self.y_padding +  self.tick_length +
@@ -199,7 +199,7 @@ function Chart(chart_id, data)
         var height = self.height - self.y_padding - self.tick_length;
         var x = self.x_padding;
         for (var key in data) {
-            if(data[key][dataIndex] !== null) { // do not draw null dots (places that did not have value specified)
+            if(data[key][dataIndex] !== "") { // do not draw empty string dots (places that did not have value specified)
                 var y = self.tick_length + height *
                     (1 - (data[key][dataIndex] - self.min_value)/self.range);
                 self.plotPoint(x, y);
@@ -224,7 +224,7 @@ function Chart(chart_id, data)
         c.moveTo(x, self.tick_length + height * (1 -
             (data[self.start] - self.min_value)/self.range));
         for (var key in data) {
-            if(data[key][dataIndex] !== null) { // do not draw null lines (places that did not have value specified)
+            if(data[key][dataIndex] !== "") { // do not draw empty string lines (places that did not have value specified)
                 var y = self.tick_length + height *
                     (1 - (data[key][dataIndex] - self.min_value) / self.range);
                 c.lineTo(x, y);
@@ -241,8 +241,8 @@ function Chart(chart_id, data)
     {
         // when drawing histogram, add extra property to data to give space for all drawn elements
         data[""] = [];
-        for(var i = 0;  i < data[self.data_keys[0]].length; i++) { // all of this new label's y-values are null
-            data[""].push(null);
+        for(var i = 0;  i < data[self.data_keys[0]].length; i++) { // all of this new label's y-values are empty string
+            data[""].push("");
         }
         self.data_keys = Object.keys(data); // reset all labels in the data
         if(dataIndex === 0) { // only find range / draw axes for first set of data
@@ -262,7 +262,7 @@ function Chart(chart_id, data)
         var x = self.x_padding + (barWidth * dataIndex);
         var height = self.height - self.y_padding;
         for(var key in data) {
-            if(data[key][dataIndex] !== null) {  // do not draw null bars (bars that did not have value specified)
+            if(data[key][dataIndex] !== "") {  // do not draw empty string bars (bars that did not have value specified)
                 var y = self.tick_length + height *
                     (1 - (data[key][dataIndex] - self.min_value)/self.range);
                 c.fillRect(x, y, barWidth, Math.max((height - y), 0)); // math.max because at least one bar will always have 0 length

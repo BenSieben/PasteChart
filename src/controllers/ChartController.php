@@ -64,8 +64,7 @@ class ChartController extends Controller {
             //   for jsonp, the user specifies a function (as $javascript_callback) and all we do is show
             //   this callback using the JSON of the chart data as its argument
             $data = $this->setUpBasicData($chartType, $dbEntryHash);
-            $jsonCode = $this->generateJSONCode($data['title'], $data['data']);
-            $data['code'] = htmlspecialchars($javascript_callback . "(" . $jsonCode . ");");
+            $data['code'] = htmlspecialchars($this->generateJSONPCode($data['title'], $data['data'], $javascript_callback));
             $this->launchView($data);
         }
         else { // bad chartType given
@@ -229,9 +228,24 @@ class ChartController extends Controller {
         // json_encode the new obj (our "object")
         $obj->chartTitle = $title;
         $obj->chartData = $chartData;
-        $encode = json_encode(array("chart" => $obj), JSON_PRETTY_PRINT); // JSON encode the object, calling it "chart"
+        //$encode = json_encode(array("chart" => $obj), JSON_PRETTY_PRINT); // JSON encode the object, calling it "chart"
+        $encode = json_encode($obj, JSON_PRETTY_PRINT); // JSON encode the object
 
         return $encode;
+    }
+
+    /**
+     * Creates JSONP code for the chart "object", which has
+     * a title and chart data by calling a callback function
+     * @param $title string title to convert to JSON
+     * @param $dataString string data to convert to JSON
+     * @param $callback string callback function that is being called on JSON object
+     * @return string JSON code for $dataString
+     */
+    private function generateJSONPCode($title, $dataString, $callback) {
+        $jsonCode = $this->generateJSONCode($title, $dataString);
+        $jsonpCode = $callback . "(" . $jsonCode . ");";
+        return $jsonpCode;
     }
 }
 ?>

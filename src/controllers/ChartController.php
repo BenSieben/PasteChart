@@ -105,17 +105,23 @@ class ChartController extends Controller {
         $data['chartHeader'] = "Share your chart and data at the URLs below:";
 
         // get array groups of chart type name, chart type link, and text to display for link
-        $data['chartLink'][0] = ["As a LineGraph:", "?c=chart&a=show&arg1=LineGraph&arg2=" . $data['hash'],
-                $data['baseURL'] . "/?c=chart&amp;a=show&amp;arg1=LineGraph&amp;arg2=" . $data['hash']];
-        $data['chartLink'][1] = ["As a PointGraph:", "?c=chart&a=show&arg1=PointGraph&arg2=" . $data['hash'],
+        $data['chartLink'][0] = ["As a LineGraph:",
+            Config::BASE_URL . "/?c=chart&a=show&arg1=LineGraph&arg2=" . $data['hash'],
+            $data['baseURL'] . "/?c=chart&amp;a=show&amp;arg1=LineGraph&amp;arg2=" . $data['hash']];
+        $data['chartLink'][1] = ["As a PointGraph:",
+            Config::BASE_URL . "/?c=chart&a=show&arg1=PointGraph&arg2=" . $data['hash'],
             $data['baseURL'] . "/?c=chart&amp;a=show&amp;arg1=PointGraph&amp;arg2=" . $data['hash']];
-        $data['chartLink'][2] = ["As a Histogram:", "?c=chart&a=show&arg1=Histogram&arg2=" . $data['hash'],
+        $data['chartLink'][2] = ["As a Histogram:",
+            Config::BASE_URL . "/?c=chart&a=show&arg1=Histogram&arg2=" . $data['hash'],
             $data['baseURL'] . "/?c=chart&amp;a=show&amp;arg1=Histogram&amp;arg2=" . $data['hash']];
-        $data['chartLink'][3] = ["As XML data:", "?c=chart&a=show&arg1=xml&arg2=" . $data['hash'],
+        $data['chartLink'][3] = ["As XML data:",
+            Config::BASE_URL . "/?c=chart&a=show&arg1=xml&arg2=" . $data['hash'],
             $data['baseURL'] . "/?c=chart&amp;a=show&amp;arg1=xml&amp;arg2=" . $data['hash']];
-        $data['chartLink'][4] = ["As JSON data:", "?c=chart&a=show&arg1=json&arg2=" . $data['hash'],
+        $data['chartLink'][4] = ["As JSON data:",
+            Config::BASE_URL . "/?c=chart&a=show&arg1=json&arg2=" . $data['hash'],
             $data['baseURL'] . "/?c=chart&amp;a=show&amp;arg1=json&amp;arg2=" . $data['hash']];
-        $data['chartLink'][5] = ["As JSONP data:", "?c=chart&a=show&arg1=jsonp&arg2=" . $data['hash'] . "&arg3=javascript_callback",
+        $data['chartLink'][5] = ["As JSONP data:",
+            Config::BASE_URL . "/?c=chart&a=show&arg1=jsonp&arg2=" . $data['hash'] . "&arg3=javascript_callback",
             $data['baseURL'] . "/?c=chart&amp;a=show&amp;arg1=jsonp&amp;arg2=" . $data['hash'] . "&amp;arg3=javascript_callback"];
 
         return $data;

@@ -26,7 +26,7 @@ class ChartView extends View {
     <meta charset="utf-8"/>
     <link rel="icon" href="./src/resources/favicon.ico"/>
     <link rel="stylesheet" type="text/css" href="./src/styles/stylesheet.css"/>
-    <script src="./src/resources/chart.js"></script>
+    <script src="./src/scripts/chart.js"></script>
 </head>
 <body>
     <h1><?= $data['hash'] ?> <?= $data['chartType'] ?> - <a href="?c=landing">PasteChart</a></h1>

@@ -23,7 +23,7 @@ class LandingView extends View {
     <meta charset="utf-8" />
     <link rel="icon" href="./src/resources/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="./src/styles/stylesheet.css" />
-    <script src="./src/resources/landingFormCheck.js"></script>
+    <script src="./src/scripts/landingFormCheck.js"></script>
 </head>
 <body>
     <h1>PasteChart</h1>

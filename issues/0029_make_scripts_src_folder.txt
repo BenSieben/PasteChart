@@ -1,0 +1,14 @@
+//Issue 0029: make scripts src folder
+
+//Who is assigned this task
+Ben
+
+//Description
+Move the .js files from the resources
+folder to a new "scripts" folder
+(chart.js and landingFormCheck.js)
+
+//Resolved or not?
+RESOLVED: [X]
+NOT RESOLVED: []
+

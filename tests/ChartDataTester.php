@@ -1,6 +1,11 @@
 <?php
 namespace cs174\hw4\tests;
-use cs174\hw4\configs\Config;
+
+include_once "../vendor/autoload.php";
+include_once "../vendor/simpletest/simpletest/autorun.php";
+include_once "../src/configs/Config.php";
+
+use cs174\hw4\configs\Config as Config;
 
 /**
  * Class DataTester
@@ -16,12 +21,17 @@ class ChartDataTester extends \UnitTestCase {
     private $results; // an array which holds results of all the tests
 
     /**
-     * Constructs a new DataTester
+     * Constructs a new ChartDataTester
      * @param $data String the chart data to run unit tests on
      */
-    public function __construct($data) {
+    public function __construct($data = null) {
         parent::__construct();
-        $this->data = $data;
+        if ($data !== null) {  // If data is given to us, test that data
+            $this->data = $data;
+        }
+        else {  // Otherwise test the sample data here
+            $this->data = "Jan,2,3\nFeb,,8\nMar,6,13";
+        }
         $this->results = array();
     }
 
@@ -64,6 +74,11 @@ class ChartDataTester extends \UnitTestCase {
 
         $split_lines = explode("\n", $this->data);
         $first_line_comma_count = substr_count($split_lines[0], ","); // count number of commas in first line
+
+        // make sure first line has at least one value
+        if($first_line_comma_count === 0) {  // If first line has no values, we must reject it (add it lines with too few values)
+            $this->results['lines_with_too_few_values'] = [0];
+        }
 
         // check if first line has too many commas or not (too many values)
         if($first_line_comma_count <= Config::MAX_VALUES_PER_LINE) {

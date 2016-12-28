@@ -6,14 +6,17 @@ create a sample JSONP call for
 
 This project relies on Composer. Here is how to set it up
 to make sure that the website works properly:
-    [1] Download and install Composer from their website
-    [2] Open terminal / command line in root directory of project (i.e., where this Readme.txt is)
-    [3] Run command "composer install" in terminal / command line
-        to let Composer download necessary files for the project
-    [4] The website should work properly now if Composer installed successfully
+
+[1] Download and install Composer from their website
+
+[2] Open terminal / command line in root directory of project (i.e., where this Readme.txt is)
+
+[3] Run command "composer install" in terminal / command line to let Composer download necessary files for the project
+
+[4] The website should work properly now if Composer installed successfully
 
 
-    This project also makes use of SimpleTest. Specifically, SimpleTest's UnitTestCase
+This project also makes use of SimpleTest. Specifically, SimpleTest's UnitTestCase
 class is inherited by ChartDataTester to test a string of chart data for validity.
 It is used by the FormController class to run tests on user-submitted graph data.
 SimpleTest should be installed via Composer (see above steps on using Composer).

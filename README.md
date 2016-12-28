@@ -22,13 +22,17 @@ It is used by the FormController class to run tests on user-submitted graph data
 SimpleTest should be installed via Composer (see above steps on using Composer).
 To use this ChartDataTester to test any given string of proposed chart data, follow
 these steps:
+
     [1] Create a PHP script where you would like to make use of ChartDataTester
+    
     [2] Make sure that Composer's autoload function and ChartDataTester are
         imported to the script
+        
     [3] Create a new ChartDataTester with the following code (note that $data
         is the string that will be tested for validity). If you do not specify
         $data to test, it will be defaulted to some sample data:
             # $cdt = new \cs174\hw4\tests\ChartDataTester($data)
+        
     [4] After creating the ChartDataTester object, depending on how you would
         like the results to appear, you will call the run function in different
         ways (might need backslash in front of reporter class names depending where you
@@ -36,6 +40,7 @@ these steps:
             # $result = $cdt->run(new TextReporter()) // prints to standard output results of test in plain text
             # $result = $cdt->run(new SimpleReporter()) // prints nothing
             # $result = $cdt->run(new HtmlReporter()) // prints to standard output HTML document code for displaying results
+        
     [5] The run method will return true if all tests pass. This can be used to
         determine in code whether or not all the tests passed when the ChartDataTester
         was run. Here is one simple example of doing this ($result = what was returned
@@ -46,6 +51,7 @@ these steps:
             # else {
             #     echo("Not all tests passed!");
             # }
+        
     [6] In addition to checking the result of calling the run function, after using run ChartDataTester
         will have an array called $results, which has multiple internal arrays which indicate problematic
         data line(s) for certain checks. To see what keys are used by $results, use
